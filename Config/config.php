@@ -1,5 +1,8 @@
 <?php
 
 return [
-    'route_default' => 'dashboard'
+    'route_default' => 'dashboard',
+    'features' => [
+        'register'
+    ]
 ];

@@ -22,6 +22,7 @@ Route::get('dark-mode-switcher', [DarkModeController::class, 'switch'])->name('d
 
 Route::get('icon-dev', [IconDevController::class, 'index'])->name('icon-dev');
 
+
 Route::middleware(['auth:web', 'verified'])
     ->get('/', function () {
         return redirect(route(config('basecore.route_default')));

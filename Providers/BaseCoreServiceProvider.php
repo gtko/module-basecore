@@ -3,10 +3,13 @@
 namespace Modules\BaseCore\Providers;
 
 use Illuminate\Contracts\Debug\ExceptionHandler;
-use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Jetstream\Http\Middleware\ShareInertiaData;
+use Modules\BaseCore\Contracts\Services\FeaturesContract;
 use Modules\BaseCore\Contracts\Entities\UserEntity;
 use Modules\BaseCore\Contracts\Personnes\CreatePersonneContract;
 use Modules\BaseCore\Contracts\Personnes\UpdatePersonneContract;
@@ -19,8 +22,10 @@ use Modules\BaseCore\Contracts\Repositories\UserRepositoryContract;
 use Modules\BaseCore\Contracts\Services\CompositeurThemeContract;
 use Modules\BaseCore\Contracts\Services\ThemeContract;
 use Modules\BaseCore\Contracts\Views\BeforeMenuContract;
+use Modules\BaseCore\Entities\Features;
 use Modules\BaseCore\Entities\TypeView;
 use Modules\BaseCore\Exceptions\Handler;
+use Modules\BaseCore\Http\Middleware\CheckFeaturesMiddleware;
 use Modules\BaseCore\Models\User;
 use Modules\BaseCore\Services\CompositeurTheme;
 use Modules\BaseCore\Actions\Personne\CreatePersonne;
@@ -61,6 +66,11 @@ class BaseCoreServiceProvider extends ServiceProvider
         $this->registerViewsClass();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
 
+        Config::set('view.paths',  [
+            ...config('view.paths'),
+            module_path('BaseCore','Resources/views-root')
+        ]);
+
         View::composer('*', MenuComposer::class);
         View::composer('*', DarkModeComposer::class);
         View::composer('*', LoggedInUserComposer::class);
@@ -100,6 +110,11 @@ class BaseCoreServiceProvider extends ServiceProvider
         $this->app->bind(UpdatePersonneContract::class, UpdatePersonne::class);
 
         $this->app->singleton(CompositeurThemeContract::class, CompositeurTheme::class);
+        $this->app->singleton(FeaturesContract::class, Features::class);
+
+        $kernel = $this->app->make(Kernel::class);
+
+        $kernel->appendMiddlewareToGroup('web', CheckFeaturesMiddleware::class);
     }
 
     /**

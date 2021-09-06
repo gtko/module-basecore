@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-basecore::guest-layout>
     <x-jet-authentication-card>
         <x-slot name="title">
             Mot de passe perdu
@@ -34,4 +34,4 @@
 
 
     </x-jet-authentication-card>
-</x-guest-layout>
+</x-basecore::guest-layout>

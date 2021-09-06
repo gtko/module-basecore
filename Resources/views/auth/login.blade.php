@@ -40,10 +40,19 @@
                     </a>
                 @endif
             </div>
-            <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
+            <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left flex justify-between">
                 <x-jet-button class="xl:w-32 xl:mr-3">
                     {{__('basecore::common.login')}}
                 </x-jet-button>
+
+                @if(app(Modules\BaseCore\Contracts\Services\FeaturesContract::class)->available('register'))
+                    <a href='{{route('register')}}'
+                       class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 mt-3 xl:mt-0 align-top"
+                    >
+                        {{__('basecore::common.register')}}
+                    </a>
+                @endif
+
             </div>
         </form>
 
