@@ -6,6 +6,12 @@
 
 
         <x-jet-validation-errors class="my-4" />
+
+        <x-basecore::resolve-type-view
+            :contrat-view-class="Modules\BaseCore\Contracts\Views\BeforeLoginContract::class"
+            :arguments="[]"
+        />
+
         <form id="login-form" method="POST" action="{{ route('login') }}">
             @csrf
             <div class="intro-x mt-8">
@@ -40,5 +46,11 @@
                 </x-jet-button>
             </div>
         </form>
+
+        <x-basecore::resolve-type-view
+            :contrat-view-class="Modules\BaseCore\Contracts\Views\AfterLoginContract::class"
+            :arguments="[]"
+        />
+
     </x-jet-authentication-card>
 </x-basecore::guest-layout>
