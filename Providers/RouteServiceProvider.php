@@ -2,8 +2,11 @@
 
 namespace Modules\BaseCore\Providers;
 
+use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Modules\BaseCore\Http\Middleware\CheckFeaturesMiddleware;
+use Modules\BaseCore\Http\Middleware\CheckInfoAuthMiddleware;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -24,6 +27,10 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
+        $kernel = $this->app->make(Kernel::class);
+
+        $kernel->appendMiddlewareToGroup('web', CheckFeaturesMiddleware::class);
+        $kernel->appendMiddlewareToGroup('web', CheckInfoAuthMiddleware::class);
     }
 
     /**

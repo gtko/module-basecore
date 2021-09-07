@@ -26,6 +26,7 @@ use Modules\BaseCore\Entities\Features;
 use Modules\BaseCore\Entities\TypeView;
 use Modules\BaseCore\Exceptions\Handler;
 use Modules\BaseCore\Http\Middleware\CheckFeaturesMiddleware;
+use Modules\BaseCore\Http\Middleware\CheckInfoAuthMiddleware;
 use Modules\BaseCore\Models\User;
 use Modules\BaseCore\Services\CompositeurTheme;
 use Modules\BaseCore\Actions\Personne\CreatePersonne;
@@ -112,9 +113,10 @@ class BaseCoreServiceProvider extends ServiceProvider
         $this->app->singleton(CompositeurThemeContract::class, CompositeurTheme::class);
         $this->app->singleton(FeaturesContract::class, Features::class);
 
-        $kernel = $this->app->make(Kernel::class);
 
-        $kernel->appendMiddlewareToGroup('web', CheckFeaturesMiddleware::class);
+
+
+
     }
 
     /**

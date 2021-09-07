@@ -34,7 +34,7 @@ class PersonneRepository implements PersonneRepositoryContract
         return $query;
     }
 
-    public function createPersonne(string $firstname, string $phoneNumber, String $email, String $address_name, String $city, String $code_zip, int $country_id, string $lastname = null, string $date_birth = null, string $gender = 'male', ):?Personne
+    public function createPersonne(string $firstname, string $phoneNumber, String $email, String $address_name, String $city, String $code_zip, int $country_id, string $lastname = null, string $date_birth = null, string $gender = 'male'):?Personne
     {
         $repAddress = app(AddressRepositoryContract::class);
         $address = $repAddress->CreateAddress($address_name, $city, $code_zip, $country_id);
@@ -60,6 +60,24 @@ class PersonneRepository implements PersonneRepositoryContract
 
         return $personne;
     }
+
+    public function createPersonneForRegister(string $firstname, string $email, string $gender = 'male'): Personne
+    {
+
+        $personne = new Personne();
+        $personne->firstname = $firstname;
+
+        $personne->gender = $gender;
+        $personne->save();
+
+        $repMail = app(EmailRepositoryContract::class);
+        $emailModel = $repMail->CreateEmail($email);
+
+        $personne->emails()->sync($emailModel);
+
+        return $personne;
+    }
+
 
     public function updatePersonne(Personne $personne, String $firstname,string $phoneNumber, String $email, String $address_name, String $city, String $code_zip, int $country_id, String $lastname = null, String $dateBirth = null, String $gender = 'male'):?Personne
     {
@@ -111,4 +129,6 @@ class PersonneRepository implements PersonneRepositoryContract
 
         $personne->emails()->sync($emailModel);
     }
+
+
 }

@@ -15,7 +15,7 @@ class CreatePersonnesTable extends Migration
     {
         Schema::create('personnes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('address_id');
+            $table->unsignedBigInteger('address_id')->nullable();
             $table->string('firstname');
             $table->string('lastname')->nullable();
             $table->date('date_birth')->nullable();
@@ -24,7 +24,7 @@ class CreatePersonnesTable extends Migration
                 ->default('male');
 
             $table->index('firstname');
-            $table->index('lastname');
+            $table->index('lastname')->nullable();
 
             $table->timestamps();
         });
@@ -32,6 +32,8 @@ class CreatePersonnesTable extends Migration
 
     /**
      * Reverse the migrations.
+     *
+     *
      *
      * @return void
      */

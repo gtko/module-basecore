@@ -9,55 +9,56 @@ use Illuminate\Support\Str;
  * Class Icons
  * @link https://heroicons.dev/ list d'icon tailwind
  * @link https://css.gg/app list d'icon plus de 700
- * @method static home(int $size,string $class = '')
- * @method static folder(int $size,string $class = '')
- * @method static devis(int $size,string $class = '')
- * @method static document(int $size,string $class = '')
- * @method static busStop(int $size,string $class = '')
- * @method static trajet(int $size,string $class = '')
- * @method static note(int $size,string $class = '')
- * @method static task(int $size,string $class = '')
- * @method static download(int $size,string $class = '')
- * @method static delete(int $size,string $class = '')
- * @method static phone(int $size,string $class = '')
- * @method static print(int $size,string $class = '')
- * @method static email(int $size,string $class = '')
- * @method static calendar(int $size,string $class = '')
- * @method static search(int $size,string $class = '')
- * @method static spinner(int $size,string $class = '')
- * @method static empty(int $size,string $class = '')
- * @method static template(int $size,string $class = '')
- * @method static cuve(int $size,string $class = '')
- * @method static users(int $size,string $class = '')
- * @method static user(int $size,string $class = '')
- * @method static addCircle(int $size,string $class = '')
- * @method static tool(int $size,string $class = '')
- * @method static status(int $size,string $class = '')
- * @method static globe(int $size,string $class = '')
- * @method static briefcase(int $size,string $class = '')
- * @method static award(int $size,string $class = '')
- * @method static tag(int $size,string $class = '')
- * @method static lock(int $size,string $class = '')
- * @method static chevronDown(int $size,string $class = '')
- * @method static chevronRight(int $size,string $class = '')
- * @method static pause(int $size,string $class = '')
- * @method static play(int $size,string $class = '')
- * @method static stop(int $size,string $class = '')
- * @method static edit(int $size,string $class = '')
- * @method static data(int $size,string $class = '')
- * @method static category(int $size,string $class = '')
- * @method static cart(int $size,string $class = '')
- * @method static show(int $size,string $class = '')
- * @method static pdf(int $size,string $class = '')
- * @method static burger(int $size,string $class = '')
- * @method static bell(int $size,string $class = '')
- * @method static moon(int $size,string $class = '')
- * @method static logout(int $size,string $class = '')
- * @method static fingerprint(int $size,string $class = '')
- * @method static save(int $size,string $class = '')
- * @method static invoice(int $size,string $class = '')
- * @method static mail(int $size,string $class = '')
- * @method static creditCard(int $size,string $class = '')
+ * @method static home(int $size, string $class = '')
+ * @method static folder(int $size, string $class = '')
+ * @method static devis(int $size, string $class = '')
+ * @method static document(int $size, string $class = '')
+ * @method static busStop(int $size, string $class = '')
+ * @method static trajet(int $size, string $class = '')
+ * @method static note(int $size, string $class = '')
+ * @method static task(int $size, string $class = '')
+ * @method static download(int $size, string $class = '')
+ * @method static delete(int $size, string $class = '')
+ * @method static phone(int $size, string $class = '')
+ * @method static print(int $size, string $class = '')
+ * @method static email(int $size, string $class = '')
+ * @method static calendar(int $size, string $class = '')
+ * @method static search(int $size, string $class = '')
+ * @method static spinner(int $size, string $class = '')
+ * @method static empty(int $size, string $class = '')
+ * @method static template(int $size, string $class = '')
+ * @method static cuve(int $size, string $class = '')
+ * @method static users(int $size, string $class = '')
+ * @method static user(int $size, string $class = '')
+ * @method static addCircle(int $size, string $class = '')
+ * @method static tool(int $size, string $class = '')
+ * @method static status(int $size, string $class = '')
+ * @method static globe(int $size, string $class = '')
+ * @method static briefcase(int $size, string $class = '')
+ * @method static award(int $size, string $class = '')
+ * @method static tag(int $size, string $class = '')
+ * @method static lock(int $size, string $class = '')
+ * @method static chevronDown(int $size, string $class = '')
+ * @method static chevronRight(int $size, string $class = '')
+ * @method static pause(int $size, string $class = '')
+ * @method static play(int $size, string $class = '')
+ * @method static stop(int $size, string $class = '')
+ * @method static edit(int $size, string $class = '')
+ * @method static data(int $size, string $class = '')
+ * @method static category(int $size, string $class = '')
+ * @method static cart(int $size, string $class = '')
+ * @method static show(int $size, string $class = '')
+ * @method static pdf(int $size, string $class = '')
+ * @method static burger(int $size, string $class = '')
+ * @method static bell(int $size, string $class = '')
+ * @method static moon(int $size, string $class = '')
+ * @method static logout(int $size, string $class = '')
+ * @method static fingerprint(int $size, string $class = '')
+ * @method static save(int $size, string $class = '')
+ * @method static invoice(int $size, string $class = '')
+ * @method static mail(int $size, string $class = '')
+ * @method static creditCard(int $size, string $class = '')
+ * @method static google(int $size, string $class = '')
  * @package App\Icons
  */
 class Icons
@@ -113,38 +114,41 @@ class Icons
         'save' => '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>',
         'invoice' => '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2zM10 8.5a.5.5 0 11-1 0 .5.5 0 011 0zm5 5a.5.5 0 11-1 0 .5.5 0 011 0z"></path></svg>',
         'mail' => '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>',
-        'creditCard' => '<svg  fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>'
+        'creditCard' => '<svg  fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>',
+        'google' => '<svg  fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 12C6 15.3137 8.68629 18 12 18C14.6124 18 16.8349 16.3304 17.6586 14H12V10H21.8047V14H21.8C20.8734 18.5645 16.8379 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.445 2 18.4831 3.742 20.2815 6.39318L17.0039 8.68815C15.9296 7.06812 14.0895 6 12 6C8.68629 6 6 8.68629 6 12Z" fill="currentColor"/></svg>'
+
     ];
 
-    public function getAll():array
+    public function getAll(): array
     {
-       return $this->icons;
+        return $this->icons;
     }
 
-    private function getIcons($name, int $size = 24, string $class = ''){
+    private function getIcons($name, int $size = 24, string $class = '')
+    {
         $svg = $this->icons[$name];
 
         $renderSize = '';
         $renderClass = '';
 
-        if($size){
+        if ($size) {
             $renderSize = "with='$size' height='$size'";
         }
 
-        if(!empty($class)){
+        if (!empty($class)) {
             $renderClass = "class='$class'";
         }
 
         return Str::replace('<svg', "<svg $renderSize $renderClass ", $svg);
     }
 
-    public function __call($method , $arguments ): mixed
+    public function __call($method, $arguments): mixed
     {
         $key = Str::camel($method);
         $size = $arguments[0] ?? 24;
         $class = $arguments[1] ?? '';
 
-        if(!array_key_exists($key, $this->icons)){
+        if (!array_key_exists($key, $this->icons)) {
             $key = 'noIcon';
         }
 

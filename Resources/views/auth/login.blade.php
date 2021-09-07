@@ -5,7 +5,7 @@
         </x-slot>
 
 
-        <x-jet-validation-errors class="my-4" />
+        <x-jet-validation-errors class="my-4"/>
 
         <x-basecore::resolve-type-view
             :contrat-view-class="Modules\BaseCore\Contracts\Views\BeforeLoginContract::class"
@@ -35,7 +35,8 @@
                     <span class="cursor-pointer select-none">{{__('basecore::common.remember_me')}}</span>
                 </label>
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                       href="{{ route('password.request') }}">
                         {{__('basecore::common.forgot_password')}}
                     </a>
                 @endif
@@ -56,10 +57,18 @@
             </div>
         </form>
 
-        <x-basecore::resolve-type-view
-            :contrat-view-class="Modules\BaseCore\Contracts\Views\AfterLoginContract::class"
-            :arguments="[]"
-        />
+        <div class="flex justify-center items-center my-4">
+            <hr class="w-full">
+            OR
+            <hr class="w-full">
+        </div>
+
+        <div class=" flex justify-center items-center">
+            <x-basecore::resolve-type-view
+                :contrat-view-class="Modules\BaseCore\Contracts\Views\AfterLoginContract::class"
+                :arguments="[]"
+            />
+        </div>
 
     </x-jet-authentication-card>
 </x-basecore::guest-layout>

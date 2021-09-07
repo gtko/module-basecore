@@ -1,6 +1,7 @@
 <?php namespace Modules\BaseCore\Repositories;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use Modules\BaseCore\Contracts\Entities\UserEntity;
@@ -75,5 +76,14 @@ class UserRepository extends AbstractRepository implements UserRepositoryContrac
     public function getModel(): Model
     {
         return app(UserEntity::class);
+    }
+
+    public function fetchByEmail(string $email): Model|null
+    {
+        return User::whereHas('personne', function($query) use ($email){
+            $query->whereHas('emails', function($query) use ($email){
+                $query->where('email', $email);
+            });
+        })->first();
     }
 }

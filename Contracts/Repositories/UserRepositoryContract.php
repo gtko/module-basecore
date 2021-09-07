@@ -14,5 +14,6 @@ interface UserRepositoryContract extends SearchableRepository, RepositoryFetchab
 {
     public function create(Personne $personne, array $roles, string $password):UserEntity;
     public function update(UserEntity $user, array $roles, string $password = null):UserEntity;
+    public function fetchByEmail(string $email);
 
 }

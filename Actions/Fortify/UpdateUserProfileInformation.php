@@ -30,5 +30,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $personneRep = app(PersonneRepositoryContract::class);
             $personneRep->updatePersonneEmail($user->personne,$input['email'] );
         }
+
+
+        //@todo ici on mais a jour les infos de la personne
     }
 }
