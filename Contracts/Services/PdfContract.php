@@ -6,9 +6,9 @@ use Illuminate\Http\Response;
 
 interface PdfContract
 {
-    public function setUrl(string $url):void;
-    public function setContentHtml(string $contentHtml):void;
-    public function setParams(array $params = []):void;
+    public function setUrl(string $url):PdfContract;
+    public function setContentHtml(string $contentHtml):PdfContract;
+    public function setParams(array $params = []):PdfContract;
 
     public function getContentPdf():string;
     public function downloadPdf(string $filename):Response;
