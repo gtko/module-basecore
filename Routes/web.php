@@ -12,15 +12,19 @@
 */
 
 use Illuminate\Support\Facades\Route;
+use Modules\BaseCore\Http\Controllers\FormAuthController;
 use Modules\BaseCore\Http\Controllers\IconDevController;
 use Modules\BaseCore\Http\Controllers\PermissionController;
 use Modules\BaseCore\Http\Controllers\RoleController;
 use Modules\BaseCore\Http\Controllers\UserController;
 use Modules\BaseCore\Http\Controllers\DarkModeController;
+use Modules\BaseCore\Http\Livewire\ModalAuthComplete;
 
 Route::get('dark-mode-switcher', [DarkModeController::class, 'switch'])->name('dark-mode-switcher');
 
 Route::get('icon-dev', [IconDevController::class, 'index'])->name('icon-dev');
+
+Route::get('auth/complete/{userId}', [FormAuthController::class, 'index'])->name('auth-complete');
 
 
 Route::middleware(['auth:web', 'verified'])

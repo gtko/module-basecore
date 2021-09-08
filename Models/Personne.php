@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property Address $address
  * @property Collection $phones
  * @property UserEntity $user
+ * @property string $company
+ * @property string $type
  * @package Modules\BaseCore\Models
  * @mixin Builder
  * @mixin \Illuminate\Database\Query\Builder

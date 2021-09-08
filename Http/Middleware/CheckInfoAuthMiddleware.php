@@ -11,11 +11,17 @@ class CheckInfoAuthMiddleware
     {
 
 
-        if (\Auth::user()?->personne?->adress_id == null && \Auth::check() && $request->route()->getName() !== 'profile.show' && $request->route()->getName() !== 'logout')
-        {
-
-//          return redirect(route('profile.show'));
+        if ($request->header('x-livewire', false) == false) {
+            if (\Auth::user()?->personne?->adress_id == null
+                && \Auth::check()
+                && $request->route()->getName() !== 'auth-complete'
+                && $request->route()->getName() !== 'logout'
+                && $request->route()->getName() !== 'login') {
+                return redirect(route('auth-complete', \Auth::user()->id));
+            }
         }
+
+
         return $next($request);
     }
 }

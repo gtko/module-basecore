@@ -14,5 +14,6 @@ interface PersonneRepositoryContract extends SearchableRepository
     public function updatePersonnePhone(Personne $personne, String $phoneNumber):void;
     public function updatePersonneEmail(Personne $personne, String $email):void;
     public function createPersonneForRegister(string $lastname, string $email, string $gender = 'male'): Personne;
+    public function createCompany(Personne $personne, string $company_name): Personne;
 
 }

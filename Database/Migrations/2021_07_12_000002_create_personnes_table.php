@@ -19,10 +19,9 @@ class CreatePersonnesTable extends Migration
             $table->string('firstname');
             $table->string('lastname')->nullable();
             $table->date('date_birth')->nullable();
-            $table
-                ->enum('gender', ['male', 'female', 'other'])
-                ->default('male');
-
+            $table->string('company')->nullable();
+            $table->enum('type', ['company', 'individual'])->default('individual');
+            $table->enum('gender', ['male', 'female', 'other'])->default('male');
             $table->index('firstname');
             $table->index('lastname')->nullable();
 
@@ -32,6 +31,7 @@ class CreatePersonnesTable extends Migration
 
     /**
      * Reverse the migrations.
+     *
      *
      *
      *
