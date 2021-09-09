@@ -131,12 +131,6 @@ class PersonneRepository implements PersonneRepositoryContract
     }
 
 
-    public function createCompany(Personne $personne, string $company_name): Personne
-    {
-        $personne->company = $company_name;
-        $personne->type = 'company';
-        $personne->save();
 
-        return $personne;
-    }
+
 }

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Jetstream\Http\Middleware\ShareInertiaData;
+use Modules\BaseCore\Contracts\Repositories\CompanyRepositoryContract;
 use Modules\BaseCore\Contracts\Services\FeaturesContract;
 use Modules\BaseCore\Contracts\Entities\UserEntity;
 use Modules\BaseCore\Contracts\Personnes\CreatePersonneContract;
@@ -28,6 +29,7 @@ use Modules\BaseCore\Exceptions\Handler;
 use Modules\BaseCore\Http\Middleware\CheckFeaturesMiddleware;
 use Modules\BaseCore\Http\Middleware\CheckInfoAuthMiddleware;
 use Modules\BaseCore\Models\User;
+use Modules\BaseCore\Repositories\CompanyRepository;
 use Modules\BaseCore\Services\CompositeurTheme;
 use Modules\BaseCore\Actions\Personne\CreatePersonne;
 use Modules\BaseCore\Actions\Personne\UpdatePersonne;
@@ -109,6 +111,7 @@ class BaseCoreServiceProvider extends ServiceProvider
         $this->app->bind(RoleRepositoryContract::class, RoleRepository::class);
         $this->app->bind(CreatePersonneContract::class, CreatePersonne::class);
         $this->app->bind(UpdatePersonneContract::class, UpdatePersonne::class);
+        $this->app->bind(CompanyRepositoryContract::class, CompanyRepository::class);
 
         $this->app->singleton(CompositeurThemeContract::class, CompositeurTheme::class);
         $this->app->singleton(FeaturesContract::class, Features::class);

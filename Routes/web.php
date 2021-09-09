@@ -18,7 +18,7 @@ use Modules\BaseCore\Http\Controllers\PermissionController;
 use Modules\BaseCore\Http\Controllers\RoleController;
 use Modules\BaseCore\Http\Controllers\UserController;
 use Modules\BaseCore\Http\Controllers\DarkModeController;
-use Modules\BaseCore\Http\Livewire\ModalAuthComplete;
+use Modules\BaseCore\Http\Livewire\FormAuthComplete;
 
 Route::get('dark-mode-switcher', [DarkModeController::class, 'switch'])->name('dark-mode-switcher');
 
