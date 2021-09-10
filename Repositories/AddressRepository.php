@@ -1,10 +1,12 @@
 <?php namespace Modules\BaseCore\Repositories;
 
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Modules\BaseCore\Contracts\Repositories\AddressRepositoryContract;
 use Modules\BaseCore\Models\Address;
 
-class AddressRepository implements AddressRepositoryContract
+class AddressRepository extends AbstractRepository implements AddressRepositoryContract
 {
     public function createAddress(String $address_name, String $city, String $code_zip, String $country_id):?Address
     {
@@ -29,5 +31,15 @@ class AddressRepository implements AddressRepositoryContract
         $address->save();
 
         return $address;
+    }
+
+    public function getModel(): Model
+    {
+        return new Address();
+    }
+
+    public function searchQuery(Builder $query, string $value, mixed $parent = null): Builder
+    {
+        // TODO: Implement searchQuery() method.
     }
 }

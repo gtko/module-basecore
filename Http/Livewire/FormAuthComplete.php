@@ -9,10 +9,13 @@ use Modules\BaseCore\Actions\Personne\CreatePersonne;
 use Modules\BaseCore\Contracts\Repositories\AddressRepositoryContract;
 use Modules\BaseCore\Contracts\Repositories\CompanyRepositoryContract;
 use Modules\BaseCore\Contracts\Repositories\PersonneRepositoryContract;
+use Modules\BaseCore\Contracts\Repositories\PhoneRepositoryContract;
 use Modules\BaseCore\Contracts\Repositories\UserRepositoryContract;
 use Modules\BaseCore\Interfaces\TypePersonne;
 use Modules\BaseCore\Models\Country;
+use Modules\BaseCore\Models\Email;
 use Modules\BaseCore\Models\Personne;
+use Modules\BaseCore\Models\Phone;
 
 class FormAuthComplete extends Component
 {
@@ -35,6 +38,24 @@ class FormAuthComplete extends Component
     public function mount(UserRepositoryContract $repUser, int $userId)
     {
         $user = $repUser->fetchById($userId);
+
+
+        $repPersonne = app(PersonneRepositoryContract::class);
+        $personne = $repPersonne->fetchById('1');
+
+        $repPhone = app(PhoneRepositoryContract::class);
+        $phone = $repPhone->fetchById('1');
+
+        $repAddress = app(AddressRepositoryContract::class);
+        $address = $repAddress->fetchById('1');
+
+
+        $repPersonne->makeRelation($personne->phones(), $phone);
+
+        dd('cool');
+
+
+
 
         $this->personne = $user->personne;
 
