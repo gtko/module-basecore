@@ -7,10 +7,18 @@ use Modules\BaseCore\Models\Phone;
 
 class PhoneRepository extends AbstractRepository implements PhoneRepositoryContract
 {
-    public function createPhone(String $number):?Phone
+    public function create(String $number):Phone
     {
         $phone = new Phone();
 
+        $phone->phone = $number;
+        $phone->save();
+
+        return $phone;
+    }
+
+    public function update(Phone $phone, string $number):Phone
+    {
         $phone->phone = $number;
         $phone->save();
 

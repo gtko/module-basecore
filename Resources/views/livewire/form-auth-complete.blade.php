@@ -56,7 +56,7 @@
                             ></x-basecore::inputs.date>
                         </x-basecore::inputs.group>
                         <x-basecore::inputs.group class="">
-                            <x-basecore::inputs.select name="gender" label="Genre" >
+                            <x-basecore::inputs.select name="gender" label="Genre" wire:model="gender_type">
                                 @php $selected = old('gender', ($personne->gender ?? 'male')) @endphp
                                 <option value="male" {{ $selected == 'male' ? 'selected' : '' }} >Homme</option>
                                 <option value="female" {{ $selected == 'female' ? 'selected' : '' }} >Femme</option>

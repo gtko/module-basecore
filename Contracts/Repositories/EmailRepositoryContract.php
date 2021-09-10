@@ -8,6 +8,8 @@ use Modules\SearchCRM\Interfaces\SearchableRepository;
 
 interface EmailRepositoryContract extends SearchableRepository
 {
-    public function createEmail(String $email):?Email;
+    public function create(String $email):Email;
+    public function update(Email $emailModel, String $email):Email;
+    public function fetchByEmail(string $email): Email;
 
 }

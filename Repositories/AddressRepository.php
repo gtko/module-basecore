@@ -8,7 +8,7 @@ use Modules\BaseCore\Models\Address;
 
 class AddressRepository extends AbstractRepository implements AddressRepositoryContract
 {
-    public function createAddress(String $address_name, String $city, String $code_zip, String $country_id):?Address
+    public function create(String $address_name, String $city, String $code_zip, String $country_id):?Address
     {
         $address = new Address();
 
@@ -21,9 +21,8 @@ class AddressRepository extends AbstractRepository implements AddressRepositoryC
         return $address;
     }
 
-    public function updateAddress(int $addressId, String $address_name, String $city, String $code_zip, String $country_id):?Address
-    {
-        $address = Address::find($addressId);
+    public function update(Address $address, String $address_name, String $city, String $code_zip, String $country_id):?Address
+    {;
         $address->address = $address_name;
         $address->city = $city;
         $address->code_zip = $code_zip;

@@ -63,7 +63,10 @@ abstract class AbstractRepository implements SearchableRepository, RepositoryFet
 
         if ($relation->getRelated()::class === $target::class) {
             if (method_exists($relation, 'associate')) {
-                return $relation->associate($target);
+                $relation->associate($target);
+                $relation->getParent()->save();
+
+                return $target;
             }
 
             $relation->detach($target);

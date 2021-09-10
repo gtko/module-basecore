@@ -9,10 +9,8 @@ class CheckInfoAuthMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-
-
         if ($request->header('x-livewire', false) == false) {
-            if (\Auth::user()?->personne?->adress_id == null
+            if (\Auth::user()?->personne?->address_id == null
                 && \Auth::check()
                 && $request->route()->getName() !== 'auth-complete'
                 && $request->route()->getName() !== 'logout'
@@ -20,7 +18,6 @@ class CheckInfoAuthMiddleware
                 return redirect(route('auth-complete', \Auth::user()->id));
             }
         }
-
 
         return $next($request);
     }

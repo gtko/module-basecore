@@ -8,7 +8,7 @@ use Modules\BaseCore\Models\Email;
 
 class EmailRepository extends AbstractRepository implements EmailRepositoryContract
 {
-    public function createEmail(string $email): ?email
+    public function create(string $email): Email
     {
         $emailModel = new Email();
 
@@ -17,6 +17,21 @@ class EmailRepository extends AbstractRepository implements EmailRepositoryContr
 
         return $emailModel;
     }
+
+    public function update(Email $emailModel, string $email): Email
+    {
+        $emailModel->email = $email;
+        $emailModel->save();
+
+        return $emailModel;
+    }
+
+    public function fetchByEmail(string $email): Email
+    {
+        return Email::where('email', $email)->first();
+
+    }
+
 
     public function searchQuery(Builder $query, string $value, mixed $parent = null): Builder
     {

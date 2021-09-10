@@ -19,7 +19,7 @@ class CreatePersonne implements CreatePersonneContract
             $date_birth = (new DateStringToCarbon())->handle($request->date_birth);
         }
 
-        return $repPersonne->createPersonne(
+        return $repPersonne->create(
             $request->firstname,
             $request->phone,
             $request->email,

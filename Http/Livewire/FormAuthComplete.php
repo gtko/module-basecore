@@ -8,9 +8,11 @@ use Modules\BaseCore\Actions\Dates\DateStringToCarbon;
 use Modules\BaseCore\Actions\Personne\CreatePersonne;
 use Modules\BaseCore\Contracts\Repositories\AddressRepositoryContract;
 use Modules\BaseCore\Contracts\Repositories\CompanyRepositoryContract;
+use Modules\BaseCore\Contracts\Repositories\EmailRepositoryContract;
 use Modules\BaseCore\Contracts\Repositories\PersonneRepositoryContract;
 use Modules\BaseCore\Contracts\Repositories\PhoneRepositoryContract;
 use Modules\BaseCore\Contracts\Repositories\UserRepositoryContract;
+use Modules\BaseCore\Exceptions\BadRelationException;
 use Modules\BaseCore\Interfaces\TypePersonne;
 use Modules\BaseCore\Models\Country;
 use Modules\BaseCore\Models\Email;
@@ -35,30 +37,30 @@ class FormAuthComplete extends Component
 
     public $type = 'particulier';
 
+    protected $rules = [
+        'firstname' => 'required',
+        'lastname' => 'required',
+        'date_birth' => 'required',
+        'gender_type' => 'required',
+        'address' => 'required',
+        'city' => 'required',
+        'code_zip' => 'required',
+        'country_id' => 'required',
+        'phone' => 'required|numeric|unique:phones',
+        'email' => 'required',
+    ];
+
+    protected $messages = [
+        'phone.unique' => 'Le numero de téléphone est deja utilisé',
+        'phone.numeric' => 'Le numero doit etre au format 0606060606'
+    ];
+
+
     public function mount(UserRepositoryContract $repUser, int $userId)
     {
         $user = $repUser->fetchById($userId);
 
-
-        $repPersonne = app(PersonneRepositoryContract::class);
-        $personne = $repPersonne->fetchById('1');
-
-        $repPhone = app(PhoneRepositoryContract::class);
-        $phone = $repPhone->fetchById('1');
-
-        $repAddress = app(AddressRepositoryContract::class);
-        $address = $repAddress->fetchById('1');
-
-
-        $repPersonne->makeRelation($personne->phones(), $phone);
-
-        dd('cool');
-
-
-
-
         $this->personne = $user->personne;
-
         $this->company_name = $user->personne->company ?? '';
         $this->firstname = $user->personne->firstname ?? '';
         $this->lastname = $user->personne->lastname ?? '';
@@ -72,34 +74,40 @@ class FormAuthComplete extends Component
         $this->email = $user->personne->emails->first()->email ?? '';
     }
 
+    /**
+     * @throws BadRelationException
+     */
 
-    public function store(PersonneRepositoryContract $repPersonne, CompanyRepositoryContract $repCompany, AddressRepositoryContract $repAddress)
+    public function store(PersonneRepositoryContract $repPersonne, CompanyRepositoryContract $repCompany, AddressRepositoryContract $repAddress, EmailRepositoryContract $repEmail, PhoneRepositoryContract $repPhone)
     {
+        $this->validate($this->rules,[], $this->messages);
+
         $date_birth = (new DateStringToCarbon())->handle($this->date_birth);
 
         DB::beginTransaction();
 
-        if(!$this->personne->address && !$this->personne->city && !$this->personne->code_zip)
-        {
-            $address = $repAddress->createAddress($this->address, $this->city, $this->code_zip, $this->country_id);
-            $this->personne->address()->associate($address);
-        }
+        $personne = $repPersonne->update($this->personne, $this->firstname, $this->lastname, $date_birth, $this->gender_type);
+        $phone = $repPhone->create($this->phone);
+        $email = $repEmail->fetchByEmail($this->email);
+        $address = $repAddress->create($this->address, $this->city, $this->code_zip, $this->country_id);
 
-        $personne =  $repPersonne->updatePersonne($this->personne, $this->firstname,  $this->phone, $this->email, $this->address, $this->city, $this->code_zip, $this->country_id, $this->lastname, $date_birth, $this->gender_type);
+        $repPersonne->makeRelation($personne->address(), $address);
+        $repPersonne->makeRelation($personne->emails(), $email);
+        $repPersonne->makeRelation($personne->phones(), $phone);
 
-        if($this == 'company')
-        {
+        if ($this == 'company') {
             $repCompany->create($personne, $this->company_name);
         }
 
         DB::commit();
-
 
         return redirect(route(config('basecore.route_default')));
     }
 
     public function render()
     {
+
+
         $countries = Country::orderby('name', 'asc')->get();
         return view('basecore::livewire.form-auth-complete', compact('countries'));
     }
