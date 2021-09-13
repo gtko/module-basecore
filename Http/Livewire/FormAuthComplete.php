@@ -38,8 +38,8 @@ class FormAuthComplete extends Component
     public $type = 'particulier';
 
     protected $rules = [
-        'firstname' => 'required',
-        'lastname' => 'required',
+        'firstname' => 'required|min:2',
+        'lastname' => 'required|min:2',
         'date_birth' => 'required',
         'gender_type' => 'required',
         'address' => 'required',
@@ -47,7 +47,7 @@ class FormAuthComplete extends Component
         'code_zip' => 'required',
         'country_id' => 'required',
         'phone' => 'required|numeric|unique:phones',
-        'email' => 'required',
+        'email' => 'required|email',
     ];
 
     protected $messages = [

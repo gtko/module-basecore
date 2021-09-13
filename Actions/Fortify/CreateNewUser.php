@@ -24,12 +24,20 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        Validator::make($input, [
-            'firstname' => ['required', 'string', 'max:255'],
+        $validation_rules = [
+            'firstname' => ['required', 'string', 'max:255', 'min:2'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:emails'],
             'password' => $this->passwordRules(),
-//            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
-        ])->validate();
+        ];
+
+        $messages = [
+            'firstname.required' => 'Le nom est obligatoire.',
+            'firstname.min' => 'Le nom doit faire au moins deux caractères.',
+            'firstname.max' => 'Le nom doit faire moins de 255 caractères.',
+            'password.confirmed' => 'Les deux mots de pass doivent être identique',
+        ];
+
+        Validator::make($input, $validation_rules, $messages)->validate();
 
         DB::beginTransaction();
 

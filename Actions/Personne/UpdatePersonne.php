@@ -21,7 +21,7 @@ class UpdatePersonne implements UpdatePersonneContract
             $date_birth = (new DateStringToCarbon())->handle($request->date_birth);
         }
 
-        return $repPersonne->updatePersonne(
+        return $repPersonne->update(
             $personne,
             $request->firstname,
             $request->phone,

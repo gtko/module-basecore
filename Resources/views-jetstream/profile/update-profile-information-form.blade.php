@@ -60,6 +60,8 @@
         </div>
     </x-slot>
 
+
+
     <x-slot name="actions">
         <x-jet-action-message class="mr-3" on="saved">
             {{ __('Sauvegardé.') }}
