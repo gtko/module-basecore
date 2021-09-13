@@ -1,6 +1,60 @@
 <?php
 
 return [
+
+    'profil' => [
+        'maj_email' => "Update your account profile information and email address.",
+        'new_photo' => "Select a new photo",
+        'remove_photo' => "Delete photo",
+        'two_factor' => 'Two-factor authentication',
+        'add_securite' => "Add extra security to your account by using two-factor authentication.",
+        'two_factor_enable' => "You have enabled two-factor authentication.",
+        'two_factor_disable' => "Two-factor authentication is not enabled.",
+        'token' => "When two-factor authentication is enabled, you will be prompted for a secure, random token during authentication. You can retrieve this token from the Google Authenticator app on your phone.",
+        'qr' => "Two-factor authentication is now enabled. Scan the following QR code using your phone's authentication app.",
+        'code_recup' => "Keep these recovery codes in a secure password manager. They can be used to recover access to your account if your two-factor authentication device is lost.",
+        'activate' => 'Activate',
+        'code_recup_reg' => 'Regenerate Recovery Codes',
+        'code_recup_echo' => 'View recovery codes',
+        'disable' => 'Disable',
+
+        'session' => 'Navigation Sessions',
+        'deco_all' => "Manage and disconnect your active sessions on other browsers and devices.",
+        'deco_all_mobil' => "If necessary, you can log out of all your other browsing sessions on all your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you believe your account has been compromised, you should also update your password.",
+        'browser_deco' => 'Logging out of other browser sessions',
+        'finish' => 'Completed.',
+        'deco_browser' => 'Disconnect from other browser sessions.',
+        'deco_browser_all' => 'Please enter your password to confirm that you wish to log out of your other browsing sessions on all your devices.',
+        'Password' => 'Password',
+        'cancel' => 'Cancel',
+        'deco_session_browser' => 'Logging out of other browser sessions',
+        'maj_password' => 'Update password',
+        'password_length' => 'Make sure your account uses a long, random password to stay secure.',
+        'password_actual' => 'Current password',
+        'new_password' => 'New password',
+        'new_password_confirmed' => 'Confirm the new password',
+
+    ],
+
+    'create_user' => [
+        'you_are' => 'You are?',
+        'choose_type' => 'Choose a type',
+        'individual' => 'An individual',
+        'company' => 'A company',
+        'company_name' => 'Company name',
+        'male' => 'Male',
+        'female' => 'Femal',
+        'other' => 'Other',
+        'address' => 'Address',
+        'city' => 'City',
+        'code_zip' => 'Zip code',
+        'country' => 'Country',
+        'choice_country' => 'Choose your country',
+        'phone' => "Phone",
+        'email' => "Email",
+    ],
+
+
     'common' => [
         'actions' => 'Actions',
         'create' => 'Create',

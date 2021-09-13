@@ -1,15 +1,15 @@
 <x-jet-action-section>
     <x-slot name="title">
-        {{ __('Sessions de navigation') }}
+        {{ __('basecore::crud.profil.session') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __("Gérez et déconnectez vos sessions actives sur d'autres navigateurs et appareils.") }}
+        {{ __("basecore::crud.profil.deco_all") }}
     </x-slot>
 
     <x-slot name="content">
         <div class="max-w-xl text-sm text-gray-600">
-            {{ __("Si nécessaire, vous pouvez vous déconnecter de toutes vos autres sessions de navigation sur tous vos appareils. Certaines de vos sessions récentes sont répertoriées ci-dessous ; toutefois, cette liste peut ne pas être exhaustive. Si vous pensez que votre compte a été compromis, vous devez également mettre à jour votre mot de passe.") }}
+            {{ __("basecore::crud.profil.deco_all_mobil") }}
         </div>
 
         @if (count($this->sessions) > 0)
@@ -53,26 +53,26 @@
 
         <div class="flex items-center mt-5">
             <x-jet-button wire:click="confirmLogout" wire:loading.attr="disabled">
-                {{ __('Déconnexion des autres sessions du navigateur') }}
+                {{ __('basecore::crud.profil.browser_deco') }}
             </x-jet-button>
 
             <x-jet-action-message class="ml-3" on="loggedOut">
-                {{ __('Terminé.') }}
+                {{ __('basecore::crud.profil.finish') }}
             </x-jet-action-message>
         </div>
 
         <!-- Log Out Other Devices Confirmation Modal -->
         <x-jet-dialog-modal wire:model="confirmingLogout">
             <x-slot name="title">
-                {{ __('Déconnexion des autres sessions du navigateur') }}
+                {{ __('basecore::crud.profil.deco_browser') }}
             </x-slot>
 
             <x-slot name="content">
-                {{ __('Veuillez saisir votre mot de passe pour confirmer que vous souhaitez vous déconnecter de vos autres sessions de navigation sur tous vos appareils.') }}
+                {{ __('basecore::crud.profil.deco_browser_all') }}
 
                 <div class="mt-4" x-data="{}" x-on:confirming-logout-other-browser-sessions.window="setTimeout(() => $refs.password.focus(), 250)">
                     <x-jet-input type="password" class="mt-1 block w-3/4"
-                                placeholder="{{ __('Password') }}"
+                                placeholder="{{ __('basecore::crud.profil.Password') }}"
                                 x-ref="password"
                                 wire:model.defer="password"
                                 wire:keydown.enter="logoutOtherBrowserSessions" />
@@ -83,13 +83,13 @@
 
             <x-slot name="footer">
                 <x-jet-secondary-button wire:click="$toggle('confirmingLogout')" wire:loading.attr="disabled">
-                    {{ __('Annuler') }}
+                    {{ __('basecore::crud.profil.cancel') }}
                 </x-jet-secondary-button>
 
                 <x-jet-button class="ml-2"
                             wire:click="logoutOtherBrowserSessions"
                             wire:loading.attr="disabled">
-                    {{ __('Déconnexion des autres sessions du navigateur') }}
+                    {{ __('basecore::crud.profil.deco_session_browser') }}
                 </x-jet-button>
             </x-slot>
         </x-jet-dialog-modal>

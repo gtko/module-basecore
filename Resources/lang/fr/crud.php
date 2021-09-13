@@ -1,6 +1,59 @@
 <?php
 
 return [
+
+    'profil' => [
+        'maj_email' => "Mettez à jour les informations du profil et l'adresse électronique de votre compte.",
+        'new_photo' => "Sélectionnez une nouvelle photo",
+        'remove_photo' => "Supprimer la photo",
+        'two_factor' => 'Authentification à deux facteurs',
+        'add_securite' => "Ajoutez une sécurité supplémentaire à votre compte en utilisant l'authentification à deux facteurs.",
+        'two_factor_enable' => "Vous avez activé l'authentification à deux facteurs.",
+        'two_factor_disable' => "Vous n'avez pas activé l'authentification à deux facteurs.",
+        'token' => "Lorsque l'authentification à deux facteurs est activée, un jeton sécurisé et aléatoire vous sera demandé lors de l'authentification. Vous pouvez récupérer ce jeton à partir de l'application Google Authenticator de votre téléphone.",
+        'qr' => "L'authentification à deux facteurs est maintenant activée. Scannez le code QR suivant en utilisant l'application d'authentification de votre téléphone.",
+        'code_recup' => "Conservez ces codes de récupération dans un gestionnaire de mots de passe sécurisé. Ils peuvent être utilisés pour récupérer l'accès à votre compte si votre dispositif d'authentification à deux facteurs est perdu.",
+        'activate' => 'Activer',
+        'code_recup_reg' => 'Codes de récupération de Regenerate',
+        'code_recup_echo' => 'Afficher les codes de récupération',
+        'disable' => 'Désactiver',
+
+        'session' => 'Sessions de navigation',
+        'deco_all' => "Gérez et déconnectez vos sessions actives sur d'autres navigateurs et appareils.",
+        'deco_all_mobil' => "Si nécessaire, vous pouvez vous déconnecter de toutes vos autres sessions de navigation sur tous vos appareils. Certaines de vos sessions récentes sont répertoriées ci-dessous ; toutefois, cette liste peut ne pas être exhaustive. Si vous pensez que votre compte a été compromis, vous devez également mettre à jour votre mot de passe.",
+        'browser_deco' => 'Déconnexion des autres sessions du navigateur',
+        'finish' => 'Terminé.',
+        'deco_browser' => 'Déconnexion des autres sessions du navigateur.',
+        'deco_browser_all' => 'Veuillez saisir votre mot de passe pour confirmer que vous souhaitez vous déconnecter de vos autres sessions de navigation sur tous vos appareils.',
+        'Password' => 'Mot de pass',
+        'cancel' => 'Annuler',
+        'deco_session_browser' => 'Déconnexion des autres sessions du navigateur',
+        'maj_password' => 'Mettre à jour le mot de passe',
+        'password_length' => 'Assurez-vous que votre compte utilise un mot de passe long et aléatoire pour rester sécurisé.',
+        'password_actual' => 'Mot de passe actuel',
+        'new_password' => 'Nouveau mot de passe',
+        'new_password_confirmed' => 'Confirmer le nouveau mot de passe',
+
+    ],
+
+    'create_user' => [
+        'you_are' => 'Vous êtes ?',
+        'choose_type' => 'Choisisiez un type',
+        'individual' => 'Un particulier',
+        'company' => 'Une entreprise',
+        'company_name' => 'Nom de l entreprise',
+        'male' => 'Homme',
+        'female' => 'Femme',
+        'other' => 'Autre',
+        'address' => 'Adresse',
+        'city' => 'Ville',
+        'code_zip' => 'Code postal',
+        'country' => 'Pays',
+        'choice_country' => 'Choisissez votre pays',
+        'phone' => "Téléphone",
+        'email' => "Email",
+    ],
+
     'common' => [
         'actions' => 'Actions',
         'create' => 'Créer',

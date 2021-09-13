@@ -1,24 +1,24 @@
 <x-jet-action-section>
     <x-slot name="title">
-        {{ __('Authentification à deux facteurs') }}
+        {{ __('basecore::crud.profil.two_factor') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __("Ajoutez une sécurité supplémentaire à votre compte en utilisant l'authentification à deux facteurs.") }}
+        {{ __("basecore::crud.profil.add_securite") }}
     </x-slot>
 
     <x-slot name="content">
         <h3 class="text-lg font-medium text-gray-900">
             @if ($this->enabled)
-                {{ __("Vous avez activé l'authentification à deux facteurs.") }}
+                {{ __("basecore::crud.profil.two_factor_enable") }}
             @else
-                {{ __("Vous n'avez pas activé l'authentification à deux facteurs.") }}
+                {{ __("basecore::crud.profil.two_factor_disable") }}
             @endif
         </h3>
 
         <div class="mt-3 max-w-xl text-sm text-gray-600">
             <p>
-                {{ __("Lorsque l'authentification à deux facteurs est activée, un jeton sécurisé et aléatoire vous sera demandé lors de l'authentification. Vous pouvez récupérer ce jeton à partir de l'application Google Authenticator de votre téléphone.") }}
+                {{ __("basecore::crud.profil.token") }}
             </p>
         </div>
 
@@ -26,7 +26,7 @@
             @if ($showingQrCode)
                 <div class="mt-4 max-w-xl text-sm text-gray-600">
                     <p class="font-semibold">
-                        {{ __("L'authentification à deux facteurs est maintenant activée. Scannez le code QR suivant en utilisant l'application d'authentification de votre téléphone.") }}
+                        {{ __("basecore::crud.profil.qr") }}
                     </p>
                 </div>
 
@@ -38,7 +38,7 @@
             @if ($showingRecoveryCodes)
                 <div class="mt-4 max-w-xl text-sm text-gray-600">
                     <p class="font-semibold">
-                        {{ __("Conservez ces codes de récupération dans un gestionnaire de mots de passe sécurisé. Ils peuvent être utilisés pour récupérer l'accès à votre compte si votre dispositif d'authentification à deux facteurs est perdu.") }}
+                        {{ __("basecore::crud.profil.code_recup") }}
                     </p>
                 </div>
 
@@ -54,27 +54,27 @@
             @if (! $this->enabled)
                 <x-jet-confirms-password wire:then="enableTwoFactorAuthentication">
                     <x-jet-button type="button" wire:loading.attr="disabled">
-                        {{ __('Activer') }}
+                        {{ __('basecore::crud.profil.activate') }}
                     </x-jet-button>
                 </x-jet-confirms-password>
             @else
                 @if ($showingRecoveryCodes)
                     <x-jet-confirms-password wire:then="regenerateRecoveryCodes">
                         <x-jet-secondary-button class="mr-3">
-                            {{ __('Codes de récupération de Regenerate') }}
+                            {{ __('basecore::crud.profil.code_recup_reg') }}
                         </x-jet-secondary-button>
                     </x-jet-confirms-password>
                 @else
                     <x-jet-confirms-password wire:then="showRecoveryCodes">
                         <x-jet-secondary-button class="mr-3">
-                            {{ __('Afficher les codes de récupération') }}
+                            {{ __('basecore::crud.profil.code_recup_echo') }}
                         </x-jet-secondary-button>
                     </x-jet-confirms-password>
                 @endif
 
                 <x-jet-confirms-password wire:then="disableTwoFactorAuthentication">
                     <x-jet-danger-button wire:loading.attr="disabled">
-                        {{ __('Désactiver') }}
+                        {{ __('basecore::crud.profil.disable') }}
                     </x-jet-danger-button>
                 </x-jet-confirms-password>
             @endif
