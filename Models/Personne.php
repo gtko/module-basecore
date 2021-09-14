@@ -61,12 +61,12 @@ class Personne extends Model
 
     public function emails(): BelongsToMany
     {
-        return $this->belongsToMany(Email::class);
+        return $this->belongsToMany(Email::class)->orderBy('order', 'asc');
     }
 
     public function phones(): BelongsToMany
     {
-        return $this->belongsToMany(Phone::class);
+        return $this->belongsToMany(Phone::class)->orderBy('order', 'asc');
     }
 
     /**
