@@ -52,6 +52,8 @@ return [
         'choice_country' => 'Choose your country',
         'phone' => "Phone",
         'email' => "Email",
+        'update_info_title' => "Update password",
+        'update_info' => "Update your profile information",
     ],
 
 

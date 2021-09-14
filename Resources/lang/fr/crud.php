@@ -52,6 +52,9 @@ return [
         'choice_country' => 'Choisissez votre pays',
         'phone' => "Téléphone",
         'email' => "Email",
+        'update_info_title' => "Mettre à jour le mot de passe",
+        'update_info' => "Mettez à jour les informations de votre profil",
+
     ],
 
     'common' => [

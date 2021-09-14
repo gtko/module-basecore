@@ -35,6 +35,10 @@ class FormAuthComplete extends Component
     public string $phone;
     public string $email;
 
+    public string $class = '';
+    public bool $edit = false;
+
+
     public $type = 'particulier';
 
     protected $rules = [
@@ -46,7 +50,6 @@ class FormAuthComplete extends Component
         'city' => 'required',
         'code_zip' => 'required',
         'country_id' => 'required',
-        'phone' => 'required|numeric|unique:phones',
         'email' => 'required|email',
     ];
 
@@ -56,9 +59,14 @@ class FormAuthComplete extends Component
     ];
 
 
-    public function mount(UserRepositoryContract $repUser, int $userId)
+
+
+    public function mount(UserRepositoryContract $repUser, int $userId, string $class = '', bool $edit = false)
     {
+
         $user = $repUser->fetchById($userId);
+        $this->edit = $edit;
+        $this->class = $class;
 
         $this->personne = $user->personne;
         $this->company_name = $user->personne->company ?? '';
@@ -80,20 +88,33 @@ class FormAuthComplete extends Component
 
     public function store(PersonneRepositoryContract $repPersonne, CompanyRepositoryContract $repCompany, AddressRepositoryContract $repAddress, EmailRepositoryContract $repEmail, PhoneRepositoryContract $repPhone)
     {
-        $this->validate($this->rules,[], $this->messages);
+
+        if(!$this->phone === $this->personne->phones->first())
+        {
+            $this->rules['phone'] =  'required|numeric|unique:phones';
+        }
+
+
+        $this->validate($this->rules, [], $this->messages);
 
         $date_birth = (new DateStringToCarbon())->handle($this->date_birth);
 
         DB::beginTransaction();
 
         $personne = $repPersonne->update($this->personne, $this->firstname, $this->lastname, $date_birth, $this->gender_type);
-        $phone = $repPhone->create($this->phone);
+
+        if(!$this->phone === $this->personne->phones->first())
+        {
+            $phone = $repPhone->create($this->phone);
+            $repPersonne->makeRelation($personne->phones(), $phone);
+        }
+
         $email = $repEmail->fetchByEmail($this->email);
         $address = $repAddress->create($this->address, $this->city, $this->code_zip, $this->country_id);
 
         $repPersonne->makeRelation($personne->address(), $address);
         $repPersonne->makeRelation($personne->emails(), $email);
-        $repPersonne->makeRelation($personne->phones(), $phone);
+
 
         if ($this == 'company') {
             $repCompany->create($personne, $this->company_name);

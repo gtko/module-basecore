@@ -1,17 +1,19 @@
-<div class="w-full h-full flex justify-center items-center mt-24">
+<div class="{{$class}}">
 
-    <div class="bg-white lg:w-2/4 md:w-2/3 w-full p-8">
+    <div class="bg-white @if (!$edit) lg:w-2/4 md:w-2/3  @endif  w-full">
         <h4 class="text-xl font-bold text-center mt-4 mb-8">
 
         </h4>
         <hr class="">
         <div class="flex flex-wrap">
-            <form wire:submit.prevent="store" method="POST">
+            <form wire:submit.prevent="store($data)" method="POST">
                 <div class="w-full">
                     <div class="grid grid-cols-2">
 
                         <x-basecore::inputs.group>
-                            <x-basecore::inputs.select name="type" label="{{ __('basecore::crud.create_user.you_are') }}" wire:model="type">
+                            <x-basecore::inputs.select name="type"
+                                                       label="{{ __('basecore::crud.create_user.you_are') }}"
+                                                       wire:model="type">
                                 <option value="" selected>{{ __('basecore::crud.create_user.choose_type') }}</option>
                                 <option value="particulier">{{ __('basecore::crud.create_user.individual') }}</option>
                                 <option value="entreprise">{{ __('basecore::crud.create_user.company') }}</option>
@@ -60,9 +62,12 @@
                         <x-basecore::inputs.group class="">
                             <x-basecore::inputs.select name="gender" label="Genre" wire:model="gender_type">
                                 @php $selected = old('gender', ($personne->gender ?? 'male')) @endphp
-                                <option value="male" {{ $selected == 'male' ? 'selected' : '' }} >{{ __('basecore::crud.create_user.male') }}</option>
-                                <option value="female" {{ $selected == 'female' ? 'selected' : '' }} >{{__('basecore::crud.create_user.female')}}</option>
-                                <option value="other" {{ $selected == 'other' ? 'selected' : '' }} >{{ __('basecore::crud.create_user.other') }}</option>
+                                <option
+                                    value="male" {{ $selected == 'male' ? 'selected' : '' }} >{{ __('basecore::crud.create_user.male') }}</option>
+                                <option
+                                    value="female" {{ $selected == 'female' ? 'selected' : '' }} >{{__('basecore::crud.create_user.female')}}</option>
+                                <option
+                                    value="other" {{ $selected == 'other' ? 'selected' : '' }} >{{ __('basecore::crud.create_user.other') }}</option>
                             </x-basecore::inputs.select>
                         </x-basecore::inputs.group>
                     </div>
@@ -95,9 +100,12 @@
                             ></x-basecore::inputs.text>
                         </x-basecore::inputs.group>
                         <x-basecore::inputs.group>
-                            <x-basecore::inputs.select name="country_id" label="{{ __('basecore::crud.create_user.country') }}" required wire:model.defer="country_id">
+                            <x-basecore::inputs.select name="country_id"
+                                                       label="{{ __('basecore::crud.create_user.country') }}" required
+                                                       wire:model.defer="country_id">
                                 @php $selected = $personne->personne->address->country_id ?? '150' @endphp
-                                <option disabled {{ empty($selected) ? 'selected' : '' }}>{{ __('basecore::crud.create_user.choice_country') }}
+                                <option
+                                    disabled {{ empty($selected) ? 'selected' : '' }}>{{ __('basecore::crud.create_user.choice_country') }}
                                 </option>
                                 @foreach($countries as $country)
                                     <option
@@ -130,7 +138,10 @@
                         </x-basecore::inputs.group>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mt-4 ml-2">{{ __('basecore::crud.common.save') }}</button>
+                <div class="w-full flex justify-end mt-8">
+                    <button type="submit"
+                            class="btn btn-primary mt-4 ml-2">{{ __('basecore::crud.common.save') }}</button>
+                </div>
         </div>
     </div>
 </div>

@@ -64,7 +64,7 @@
 
     <x-slot name="actions">
         <x-jet-action-message class="mr-3" on="saved">
-            {{ __('basecore::crud.common.saved.') }}
+            {{ __('basecore::crud.common.saved') }}
         </x-jet-action-message>
 
         <x-jet-button wire:loading.attr="disabled" wire:target="photo">

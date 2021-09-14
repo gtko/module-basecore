@@ -10,15 +10,36 @@
             @if (Laravel\Fortify\Features::canUpdateProfileInformation())
                 <livewire:jetstream.update-profile-information-form-c-r-m/>
 
-                <x-jet-section-border />
+                <x-jet-section-border/>
             @endif
+
+
+            <div class="w-full mb-10">
+                <x-jet-action-section>
+                    <x-slot name="title">
+                        {{ __('basecore::crud.create_user.update_info_title') }}
+                    </x-slot>
+
+                    <x-slot name="description">
+                        {{ __('basecore::crud.create_user.update_info') }}
+                    </x-slot>
+
+                    <x-slot name="content">
+
+                        <livewire:basecore::form-auth-complete :user-id="\Illuminate\Support\Facades\Auth::id()"
+                                                               :edit="true"
+                                                               :class="'w-full h-full flex justify-center items-center'"/>
+                    </x-slot>
+                </x-jet-action-section>
+            </div>
+
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.update-password-form')
                 </div>
 
-                <x-jet-section-border />
+                <x-jet-section-border/>
             @endif
 
             @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
@@ -26,7 +47,7 @@
                     @livewire('profile.two-factor-authentication-form')
                 </div>
 
-                <x-jet-section-border />
+                <x-jet-section-border/>
             @endif
 
             <div class="mt-10 sm:mt-0">
@@ -34,7 +55,7 @@
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
-                <x-jet-section-border />
+                <x-jet-section-border/>
 
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.delete-user-form')
