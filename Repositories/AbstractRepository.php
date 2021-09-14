@@ -53,7 +53,7 @@ abstract class AbstractRepository implements SearchableRepository, RepositoryFet
         return $query->paginate($limit);
     }
 
-    public function fetchById(int $id): Model
+    public function fetchById(int $id): ?Model
     {
         return $this->newQuery()->find($id);
     }
