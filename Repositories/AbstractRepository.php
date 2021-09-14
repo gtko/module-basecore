@@ -8,15 +8,27 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Modules\BaseCore\Contracts\Repositories\CreateOrUpdateRepositoryContract;
 use Modules\BaseCore\Contracts\Repositories\RelationsRepositoryContract;
 use Modules\BaseCore\Exceptions\BadRelationException;
 use Modules\BaseCore\Interfaces\RepositoryFetchable;
 use Modules\BaseCore\Interfaces\RepositoryQueryCustom;
 use Modules\SearchCRM\Interfaces\SearchableRepository;
 
-abstract class AbstractRepository implements SearchableRepository, RepositoryFetchable, RepositoryQueryCustom, RelationsRepositoryContract
+abstract class AbstractRepository implements SearchableRepository, RepositoryFetchable, RepositoryQueryCustom, RelationsRepositoryContract, CreateOrUpdateRepositoryContract
 {
     protected ?Builder $query = null;
+
+
+    public function createOrUpdate($modelTested, ...$params){
+        if($modelTested) {
+            $model = $this->update($modelTested, ...$params);
+        }else{
+            $model = $this->create( ...$params);
+        }
+
+        return $model;
+    }
 
     public function all(): Collection
     {

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use Modules\BaseCore\Contracts\Entities\UserEntity;
 use Modules\BaseCore\Contracts\Repositories\PersonneRepositoryContract;
+use Modules\BaseCore\Contracts\Repositories\RelationsRepositoryContract;
 use Modules\BaseCore\Contracts\Repositories\UserRepositoryContract;
 use Modules\BaseCore\Helpers\HasInterface;
 use Modules\BaseCore\Models\Personne;

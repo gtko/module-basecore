@@ -18,6 +18,7 @@ use Modules\BaseCore\Models\Country;
 use Modules\BaseCore\Models\Email;
 use Modules\BaseCore\Models\Personne;
 use Modules\BaseCore\Models\Phone;
+use Modules\CrmBe\Http\Requests\ClientStoreRequest;
 
 class FormAuthComplete extends Component
 {
