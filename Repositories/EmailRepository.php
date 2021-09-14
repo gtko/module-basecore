@@ -26,7 +26,7 @@ class EmailRepository extends AbstractRepository implements EmailRepositoryContr
         return $emailModel;
     }
 
-    public function fetchByEmail(string $email): Email
+    public function fetchByEmail(string $email): ?Email
     {
         return Email::where('email', $email)->first();
 

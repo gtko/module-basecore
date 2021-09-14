@@ -41,7 +41,7 @@ class PhoneRepository extends AbstractRepository implements PhoneRepositoryContr
         return new Phone();
     }
 
-    public function fetchByPhone(string $phone): Phone
+    public function fetchByPhone(string $phone): ?Phone
     {
         return Phone::where('phone', $phone)->first();
     }
