@@ -113,6 +113,16 @@ trait HasPersonne
         return  $address . ', ' . $code_zip . ' ' . $city . ', ' . $country;
     }
 
+    public function getFullAddressFormattedWithBrAttribute()
+    {
+        $address = $this->personne->address->address ?? '<br>';
+        $code_zip = $this->personne->address->code_zip ?? '';
+        $city = $this->personne->address->city ?? '';
+        $country = $this->personne->address->country->name ?? '';
+
+        return  $address . ', ' . $code_zip . ' ' . $city . ', ' . $country;
+    }
+
     public function getFirstNameAttribute()
     {
         return $this->personne->firstname ?? '';
