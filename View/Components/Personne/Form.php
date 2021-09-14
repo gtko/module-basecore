@@ -11,7 +11,8 @@ class Form extends Component
 
     public function __construct(
         public ?TypePersonne $personne = null,
-        public bool $editing = false
+        public bool $editing = false,
+        public array $disabledFields = []
     ){}
 
     /**
@@ -21,7 +22,6 @@ class Form extends Component
      */
     public function render(): string|\Illuminate\View\View
     {
-
         $countries = Country::orderby('name', 'asc')->get();
         return view('basecore::components.personne.form', compact('countries'));
     }

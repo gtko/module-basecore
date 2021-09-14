@@ -31,9 +31,6 @@ class UpdatePersonne implements UpdatePersonneContract
             $date_birth = (new DateStringToCarbon())->handle($request->date_birth);
         }
 
-        $address = $repAddress->createOrUpdate($personne->address, $request->address, $request->city, $request->code_zip, $request->country_id);
-        $email = $repEmail->createOrUpdate($personne->emails->first(),$request->email);
-        $phone = $repPhone->createOrUpdate($personne->phones->first(),$request->phone);
 
         $personne = $repPersonne->update(
             $personne,
@@ -43,8 +40,15 @@ class UpdatePersonne implements UpdatePersonneContract
             $request->gender
         );
 
-        $repPersonne->makeRelation($personne->address(), $address);
+        if($request->address ?? false) {
+            $address = $repAddress->createOrUpdate($personne->address, $request->address, $request->city, $request->code_zip, $request->country_id);
+            $repPersonne->makeRelation($personne->address(), $address);
+        }
+
+        $email = $repEmail->createOrUpdate($personne->emails->first(),$request->email);
         $repPersonne->makeRelation($personne->emails(), $email);
+
+        $phone = $repPhone->createOrUpdate($personne->phones->first(),$request->phone);
         $repPersonne->makeRelation($personne->phones(), $phone);
 
         DB::commit();

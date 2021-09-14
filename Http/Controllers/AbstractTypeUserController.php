@@ -26,6 +26,10 @@ abstract class AbstractTypeUserController extends Controller
     abstract function getModelClass():string;
     abstract function getRepository();
 
+    public function disableFields():array{
+        return [];
+    }
+
 
     /**
      * @param Model $model
@@ -45,6 +49,7 @@ abstract class AbstractTypeUserController extends Controller
      * Display a listing of the resource.
      *
      * @return Application|Factory|View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(): View|Factory|Application
     {
@@ -67,7 +72,8 @@ abstract class AbstractTypeUserController extends Controller
 
         return view('basecore::type-users.create', [
             'route' => $this->getRouteName(),
-            'name' => $this->getName()
+            'name' => $this->getName(),
+            'disabledFields' => $this->disableFields()
         ]);
     }
 
@@ -83,9 +89,9 @@ abstract class AbstractTypeUserController extends Controller
         $this->authorize('create', $this->getModelClass());
 
         $personne = (new CreatePersonne())->create($request);
-        $plombier = $this->getRepository()->create($personne);
+        $typeUser = $this->getRepository()->create($personne);
 
-        return $this->redirectSuccess($plombier);
+        return $this->redirectSuccess($typeUser);
     }
 
 
@@ -105,7 +111,8 @@ abstract class AbstractTypeUserController extends Controller
         return view('basecore::type-users.edit', [
             'route' => $this->getRouteName(),
             'name' => $this->getName(),
-            'model' => $model
+            'model' => $model,
+            'disabledFields' => $this->disableFields()
         ]);
     }
 

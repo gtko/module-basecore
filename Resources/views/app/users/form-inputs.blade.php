@@ -12,16 +12,6 @@
         ></x-basecore::inputs.password>
     </x-basecore::inputs.group>
 
-
-    <x-basecore::inputs.group class="w-full">
-        <x-basecore::inputs.password
-            name="password_smtp"
-            label="Password STMP"
-            maxlength="255"
-            :required="!$editing"
-        ></x-basecore::inputs.password>
-    </x-basecore::inputs.group>
-
     <div class="px-4 my-4">
         <h4 class="font-bold text-lg text-gray-700">
             Assign @lang('crud.roles.name')

@@ -20,7 +20,7 @@
                 action="{{ route($route.'.update', $model) }}"
                 class="mt-4"
             >
-                <x-basecore::personne.form :personne="$model" :editing="true"/>
+                <x-basecore::personne.form :personne="$model" :editing="true" :disabled-fields="$disabledFields"/>
 
                 <div class="mt-10">
                     <a href="{{ route($route.'.index') }}" class="button">
