@@ -10,7 +10,7 @@ use Modules\BaseCore\Models\Personne;
 use Modules\BaseCore\Models\User;
 use Modules\SearchCRM\Interfaces\SearchableRepository;
 
-interface UserRepositoryContract extends SearchableRepository, RepositoryFetchable, RelationsRepositoryContract
+interface UserRepositoryContract extends SearchableRepository, RepositoryFetchable, RelationsRepositoryContract, CreateOrUpdateRepositoryContract
 {
     public function create(Personne $personne, array $roles, string $password):UserEntity;
     public function update(UserEntity $user, array $roles, string $password = null):UserEntity;

@@ -4,6 +4,7 @@
 namespace Modules\BaseCore\Actions\Personne;
 
 
+use Illuminate\Support\Facades\DB;
 use Modules\BaseCore\Actions\Dates\DateStringToCarbon;
 use Modules\BaseCore\Contracts\Personnes\UpdatePersonneContract;
 use Modules\BaseCore\Contracts\Repositories\AddressRepositoryContract;
@@ -17,6 +18,9 @@ class UpdatePersonne implements UpdatePersonneContract
 
     public function update(PersonneUpdateRequest $request, Personne $personne): Personne
     {
+
+        DB::beginTransaction();
+
         $repPersonne = app(PersonneRepositoryContract::class);
         $repAddress = app(AddressRepositoryContract::class);
         $repEmail = app(EmailRepositoryContract::class);
@@ -25,13 +29,8 @@ class UpdatePersonne implements UpdatePersonneContract
             $date_birth = (new DateStringToCarbon())->handle($request->date_birth);
         }
 
-        if($personne->address) {
-            $address = $repAddress->update($personne->address, $request->address, $request->city, $request->code_zip, $request->country_id);
-        }else{
-            $address = $repAddress->create($request->address, $request->city, $request->code_zip, $request->country_id);
-        }
-
-        $email = $repEmail->update($personne->emails->first(), $request->email);
+        $address = $repAddress->createOrUpdate($personne->address, $request->address, $request->city, $request->code_zip, $request->country_id);
+        $email = $repEmail->createOrUpdate($personne->emails->first(),$request->email);
 
         $personne = $repPersonne->update(
             $personne,
@@ -43,6 +42,8 @@ class UpdatePersonne implements UpdatePersonneContract
 
         $repPersonne->makeRelation($personne->address(), $address);
         $repPersonne->makeRelation($personne->emails(), $email);
+
+        DB::commit();
 
         return $personne;
     }
