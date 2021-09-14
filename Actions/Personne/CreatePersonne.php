@@ -22,12 +22,6 @@ class CreatePersonne implements CreatePersonneContract
         return $repPersonne->create(
             $request->firstname,
             $request->phone,
-            $request->email,
-            $request->address,
-            $request->city,
-            $request->code_zip,
-            $request->country_id,
-            $request->lastname,
             $date_birth ?? null,
             $request->gender,
         );

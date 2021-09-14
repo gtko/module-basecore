@@ -11,4 +11,6 @@ interface PhoneRepositoryContract extends SearchableRepository, RelationsReposit
     public function create(String $number):Phone;
     public function update(Phone $phone, String $number):Phone;
 
+    public function fetchByPhone(string $phone):Phone;
+
 }
