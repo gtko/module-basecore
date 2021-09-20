@@ -4,6 +4,7 @@
             {{__('basecore::common.title_login')}}
         </x-slot>
 
+        <x-slot name="logo"></x-slot>
 
         <x-jet-validation-errors class="my-4"/>
 
