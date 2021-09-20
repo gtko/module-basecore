@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Jetstream\Http\Middleware\ShareInertiaData;
+use Livewire\LivewireBladeDirectives;
 use Modules\BaseCore\Contracts\Repositories\CompanyRepositoryContract;
 use Modules\BaseCore\Contracts\Services\FeaturesContract;
 use Modules\BaseCore\Contracts\Entities\UserEntity;
@@ -85,6 +86,9 @@ class BaseCoreServiceProvider extends ServiceProvider
         app(CompositeurThemeContract::class)->setViews(BeforeMenuContract::class, [
             'basecore::logo' => new TypeView(TypeView::TYPE_BLADE_COMPONENT, 'basecore::application-logo')
         ]);
+
+
+
     }
 
     /**

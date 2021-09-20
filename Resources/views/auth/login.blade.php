@@ -58,18 +58,20 @@
             </div>
         </form>
 
-        <div class="flex justify-center items-center my-4">
-            <hr class="w-full">
-            OR
-            <hr class="w-full">
-        </div>
+        @if(Modules\BaseCore\Helpers\ResolveViewHelper::exists(Modules\BaseCore\Contracts\Views\AfterLoginContract::class))
+            <div class="flex justify-center items-center my-4">
+                <hr class="w-full">
+                OR
+                <hr class="w-full">
+            </div>
 
-        <div class=" flex justify-center items-center">
-            <x-basecore::resolve-type-view
-                :contrat-view-class="Modules\BaseCore\Contracts\Views\AfterLoginContract::class"
-                :arguments="[]"
-            />
-        </div>
+            <div class=" flex justify-center items-center">
+                <x-basecore::resolve-type-view
+                    :contrat-view-class="Modules\BaseCore\Contracts\Views\AfterLoginContract::class"
+                    :arguments="[]"
+                />
+            </div>
+        @endif
 
     </x-jet-authentication-card>
 </x-basecore::guest-layout>
