@@ -47,7 +47,7 @@ class CreatePersonne implements CreatePersonneContract
         $email = $repEmail->create($request->email);
         $repPersonne->makeRelation($personne->emails(), $email);
 
-        $phone = $repPhone->create($request->phone);
+        $phone = $repPhone->create((string) $request->phone);
         $repPersonne->makeRelation($personne->phones(), $phone);
 
         DB::commit();

@@ -5,6 +5,7 @@ namespace Modules\BaseCore\Http\Requests;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Modules\BaseCore\Contracts\Repositories\EmailRepositoryContract;
 use Modules\BaseCore\Contracts\Repositories\PhoneRepositoryContract;
@@ -59,12 +60,13 @@ class PersonneStoreRequest extends FormRequest
 
     public function existsField(string $field, $call){
         $exists = $call();
-         if($exists) {
+        if($exists) {
              $this->validate([
                  $field => function ($attribute, $value, $fail) use ($exists, $field) {
                      if ($exists) {
-                         $this->getValidatorInstance()->getMessageBag()->add($field, $attribute . " n'est pas unique.");
-                         $fail($attribute . " n'est pas unique.");
+                         $name = Str::replace('_',' ',$attribute);
+                         $this->getValidatorInstance()->getMessageBag()->add($field, $name . " n'est pas unique.");
+                         $fail($name . " n'est pas unique.");
                      }
                  },
              ]);
@@ -78,10 +80,14 @@ class PersonneStoreRequest extends FormRequest
             $phoneRep = app(PhoneRepositoryContract::class);
             $phone = $phoneRep->fetchByPhone($this->{$champ_request} ?? '');
             if($phone) {
-                return DB::table('personne_phone')
-                    ->where('phone_id', $phone->id)
-                    ->where('personne_id', '!=', $personne_id)
-                    ->exists();
+                $query = DB::table('personne_phone')
+                    ->where('phone_id', $phone->id);
+
+                if($personne_id){
+                    $query->where('personne_id', '!=', $personne_id);
+                }
+
+                return $query->exists();
             }
 
             return false;
