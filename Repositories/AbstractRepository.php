@@ -44,7 +44,7 @@ abstract class AbstractRepository implements SearchableRepository, RepositoryFet
     {
         $query = $this->newQuery();
         foreach (explode(' ', $value) as $index => $lem) {
-            $querySearch = $this->searchQuery($this->newQuery(), $lem);
+            $querySearch = $this->searchQuery($this->getModel()::query(), $lem);
             $query->where(function (Builder $query) use ($querySearch) {
                 $query->setQuery($querySearch->getQuery());
             });
