@@ -29,8 +29,10 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
         $kernel = $this->app->make(Kernel::class);
 
-        $kernel->appendMiddlewareToGroup('web', CheckFeaturesMiddleware::class);
-        $kernel->appendMiddlewareToGroup('web', CheckInfoAuthMiddleware::class);
+        if(in_array('register', config('basecore.features'))) {
+            $kernel->appendMiddlewareToGroup('web', CheckFeaturesMiddleware::class);
+            $kernel->appendMiddlewareToGroup('web', CheckInfoAuthMiddleware::class);
+        }
     }
 
     /**
