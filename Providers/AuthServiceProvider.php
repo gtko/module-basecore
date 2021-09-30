@@ -8,6 +8,8 @@ use Modules\BaseCore\Contracts\Entities\UserEntity;
 use Modules\BaseCore\Models\Personne;
 use Modules\BaseCore\Policies\PersonnePolicy;
 use Modules\BaseCore\Policies\UserPolicy;
+use Modules\CoreCRM\Contracts\Entities\DevisEntities;
+use Modules\CoreCRM\Policies\DeviPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Personne::class => PersonnePolicy::class,
         UserEntity::class => UserPolicy::class,
+        DevisEntities::class => DeviPolicy::class,
     ];
 
     /**
