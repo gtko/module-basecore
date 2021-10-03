@@ -16,10 +16,6 @@
         <script src="{{ mix('dist/js/theme.js') }}"></script>
         <script src="{{ mix('dist/js/app.js') }}"></script>
         <!-- END: JS Assets-->
-
-
-        @yield('script') <!-- @todo peut etre a supprimer !!-->
-
         <div id="push">
             @stack('scripts')
         </div>
@@ -171,7 +167,7 @@
                     // Corrige duplication des images dans le components médiaUpload
                 }
 
-                // window.Livewire.rescan(); //<< bug image mais permet de garder les event livewire activé
+                //window.Livewire.rescan(); //<< bug image mais permet de garder les event livewire activé
                 // (car le rescan ne supprime pas le components  livewire coté JS du coup conflict event en live)
                 window.Livewire.restart();
                 window.Livewire.emit('root:after-render');

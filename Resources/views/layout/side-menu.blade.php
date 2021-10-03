@@ -96,6 +96,7 @@
                 :arguments="[]"
             />
         </nav>
+
         <!-- END: Side Menu -->
         <!-- BEGIN: Content -->
         <div class="content @yield('content-modifier')">
