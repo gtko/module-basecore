@@ -6,8 +6,9 @@
         <x-jet-banner />
         @yield('content')
 
-        @stack('modals')
-
+        <div id="modals">
+            @stack('modals')
+        </div>
 
         @livewireScripts
 
@@ -152,6 +153,9 @@
 
                 document.getElementById('mobile-menu').innerHTML = ''
                 document.getElementById('mobile-menu').innerHTML = doc.getElementById('mobile-menu').innerHTML
+
+                document.getElementById('modals').innerHTML = ''
+                document.getElementById('modals').innerHTML = doc.getElementById('modals').innerHTML
 
                 document.getElementById('push').innerHTML = ''
 
