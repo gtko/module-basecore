@@ -3,6 +3,7 @@
 return [
     'route_default' => 'dashboard',
     'features' => [
-        'register'
+        'register',
+        'turbolink'
     ]
 ];

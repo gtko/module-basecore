@@ -62,7 +62,8 @@
             });
         </script>
 
-    <script>
+    @if((new Modules\BaseCore\Entities\Features())->available('turbolink'))
+        <script>
         let loaderTimer = null;
 
         function loaderOn() {
@@ -219,6 +220,6 @@
 
         Ajaxification();
     </script>
-
+    @endif
     </body>
 @endsection
