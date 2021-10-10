@@ -13,6 +13,7 @@ abstract class AbstractModal extends Component
      * @return \Illuminate\View\View|string
      */
     public $isOpen = false;
+    public array $arguments = [];
 
     protected function getListeners(){
         return [
@@ -24,18 +25,21 @@ abstract class AbstractModal extends Component
 
     abstract public function getKey():string;
 
-    public function toggle()
+    public function toggle($arguments)
     {
+        $this->arguments = $arguments;
         $this->isOpen = !$this->isOpen;
     }
 
-    public function close()
+    public function close($arguments)
     {
+        $this->arguments = $arguments;
         $this->isOpen = false;
     }
 
-    public function open()
+    public function open($arguments)
     {
+        $this->arguments = $arguments;
         $this->isOpen = true;
     }
 }
