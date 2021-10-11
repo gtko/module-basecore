@@ -21,25 +21,31 @@
 </style>
 
 
-@push('scripts')
     @if($livewire)
         <script>
         (function () {
             var $timeout = 0;
 
-            function restart() {
-                clearTimeout($timeout)
-                $timeout = setTimeout(function () {
+            function initWysiwyg(){
+                console.log('Check  Modal exists', '#{{$name}}');
+                if($('#{{$name}}').length > 0) {
                     $('#{{$name}}').trumbowyg('destroy');
                     $('#{{$name}}').trumbowyg({
                         btns: [['undo', 'redo'], ['bold', 'italic', 'underline', 'strikethrough'], ['link'], ['unorderedList'],],
                         autogrow: true,
                         lang: 'fr',
                     }).on('tbwchange', function () {
-                            @this.
-                            set('{{$name}}', $(this).trumbowyg('html'));
+                        @this.
+                        set('{{$name}}', $(this).trumbowyg('html'));
                     });
-                }, 200)
+                }else{
+                    restart();
+                }
+            }
+
+            function restart() {
+                clearTimeout($timeout)
+                $timeout = setTimeout(initWysiwyg, 500)
             }
             restart()
         })()
@@ -54,5 +60,3 @@
             });
         </script>
     @endif
-
-@endpush

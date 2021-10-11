@@ -1,6 +1,6 @@
 <div>
+    @if($isOpen)
     <x-jet-modal wire:model="isOpen" max-width="lg">
-        @if($isOpen)
             @if(!$typeView->isEmpty())
                 @if($typeView->hasBladeComponentType())
                     <x-dynamic-component :component="$typeView->getContent()"
@@ -14,6 +14,6 @@
                     {!! $typeView->getContent() !!}
                 @endif
             @endif
-        @endif
     </x-jet-modal>
+    @endif
 </div>
