@@ -37,7 +37,7 @@ abstract class AbstractRepository implements SearchableRepository, RepositoryFet
 
     public function fetchAll(int $limit = 50): LengthAwarePaginator
     {
-        return $this->newQuery()->paginate();
+        return $this->newQuery()->paginate($limit);
     }
 
     public function fetchSearch(string $value, int $limit = 50): LengthAwarePaginator
