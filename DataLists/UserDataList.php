@@ -24,12 +24,6 @@ class UserDataList extends DataListType
             ],
             'format_name' => [
                 'label' => 'Nom',
-                'action' => [
-                    'permission' => ['show', app(UserEntity::class)::class],
-                    'route' => function($params){
-                        return route('users.show', $params);
-                    },
-                ]
             ],
             'roles' => [
               'label' => 'Rôles',
