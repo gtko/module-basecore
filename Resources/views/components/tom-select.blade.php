@@ -5,16 +5,19 @@
         'max_item' => 3,
         'placeholder' => '',
 ])
+@php
+ $idUnique = uniqid('tom_select');
+@endphp
 
 <div wire:ignore>
-    <select id="select-state" name="state" multiple placeholder="{{ $placeholder }}" autocomplete="on" wire:model="{{ $name }}">
+    <select id="{{ $idUnique }}" name="state" multiple placeholder="{{ $placeholder }}" autocomplete="on" wire:model="{{ $name }}">
         @foreach($collection as $i)
             <option value="{{ $i->id }}"> {{ $i->$label }}</option>
         @endforeach
     </select>
     @push('scripts')
         <script>
-            new TomSelect("#select-state", {
+            new TomSelect("#{{ $idUnique }}", {
                 maxItems: {{ $max_item }}
             });
         </script>
