@@ -18,6 +18,7 @@ class Modal extends AbstractModal
         $this->type = $type;
         $this->path = $path;
         $this->arguments = $arguments;
+
     }
 
     /**

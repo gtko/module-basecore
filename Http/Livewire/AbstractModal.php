@@ -27,19 +27,19 @@ abstract class AbstractModal extends Component
 
     public function toggle(array $arguments = [])
     {
-        $this->arguments = $arguments;
+        $this->arguments = array_merge($this->arguments, $arguments);
         $this->isOpen = !$this->isOpen;
     }
 
     public function close(array $arguments = [])
     {
-        $this->arguments = $arguments;
+        $this->arguments = array_merge($this->arguments, $arguments);
         $this->isOpen = false;
     }
 
     public function open(array $arguments = [])
     {
-        $this->arguments = $arguments;
+        $this->arguments = array_merge($this->arguments, $arguments);
         $this->isOpen = true;
     }
 }
