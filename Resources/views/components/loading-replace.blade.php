@@ -4,13 +4,15 @@
 
 ])
 
-<div {{$attributes}}>
-    <span wire:loading class="flex justify-between items-centers">
+<div>
+    <div wire:loading  {{$attributes}}>
+        <span class="flex justify-between items-center">
             @icon('spinner', $size, 'animate-spin')
             @if(!empty($label))
                 <span class="ml-2">{{$label}}</span>
             @endif
-    </span>
+        </span>
+    </div>
     <span wire:loading.remove>
         {{ $slot }}
     </span>
