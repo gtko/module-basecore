@@ -9,7 +9,7 @@
  $idUnique = uniqid('tom_select');
 @endphp
 
-<div wire:ignore>
+<div wire:ignore {{$attributes}}>
     <select id="{{ $idUnique }}" name="state" multiple placeholder="{{ $placeholder }}" autocomplete="on" wire:model="{{ $name }}">
         @foreach($collection as $i)
             <option value="{{ $i->id }}"> {{ $i->$label }}</option>
