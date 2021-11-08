@@ -98,22 +98,10 @@
                     />
                 </x-basecore::inputs.group>
             </x-basecore::disabled>
-            <div x-data="{ count: 0 }">
-                <x-basecore::disabled :disabled="$disabledFields" field-name="email">
-                    <x-basecore::inputs.group>
-                        <x-basecore::inputs.email
-                            name="email"
-                            label="Email"
-                            value="{{ old('email', ($editing ? $personne->email : '')) }}"
-                            maxlength="255"
-                            required="required"
-                        />
-                    </x-basecore::inputs.group>
-                </x-basecore::disabled>
-                <span x-on:click="count--">Decrement</span>
-                <code>count: </code><code x-text="count"></code>
-                <span x-on:click="count++">Increment</span>
-            </div>
+
+
+
+            <x-basecore::list-inputs name="phones"/>
 
 
 
@@ -124,8 +112,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
