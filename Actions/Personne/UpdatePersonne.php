@@ -12,6 +12,7 @@ use Modules\BaseCore\Contracts\Repositories\EmailRepositoryContract;
 use Modules\BaseCore\Contracts\Repositories\PersonneRepositoryContract;
 use Modules\BaseCore\Contracts\Repositories\PhoneRepositoryContract;
 use Modules\BaseCore\Http\Requests\PersonneUpdateRequest;
+use Modules\BaseCore\Models\Email;
 use Modules\BaseCore\Models\Personne;
 
 class UpdatePersonne implements UpdatePersonneContract
@@ -45,8 +46,12 @@ class UpdatePersonne implements UpdatePersonneContract
             $repPersonne->makeRelation($personne->address(), $address);
         }
 
-        $email = $repEmail->createOrUpdate($personne->emails->first(),$request->email);
-        $repPersonne->makeRelation($personne->emails(), $email);
+
+        foreach($request->email as $order => $emailStr) {
+            $email = $repEmail->createOrUpdate($personne->emails->where('email', $emailStr)->first(), $emailStr, );
+            $repPersonne->makeRelation($personne->emails(), $email);
+        }
+
 
         $phone = $repPhone->createOrUpdate($personne->phones->first(),$request->phone);
         $repPersonne->makeRelation($personne->phones(), $phone);
