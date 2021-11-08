@@ -8,7 +8,7 @@ use Modules\BaseCore\Models\Email;
 
 class EmailRepository extends AbstractRepository implements EmailRepositoryContract
 {
-    public function create(string $email): Email
+    public function create($email): Email
     {
         $emailModel = new Email();
 

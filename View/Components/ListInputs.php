@@ -9,7 +9,8 @@ class ListInputs extends Component
 
     public function __construct(
         public string $name,
-        public array $items = []
+        public array $items = [],
+        public string $btn = '',
     ){}
 
     public function render()

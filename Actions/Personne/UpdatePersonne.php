@@ -20,7 +20,6 @@ class UpdatePersonne implements UpdatePersonneContract
 
     public function update(PersonneUpdateRequest $request, Personne $personne): Personne
     {
-
         DB::beginTransaction();
 
         $repPersonne = app(PersonneRepositoryContract::class);
@@ -28,7 +27,7 @@ class UpdatePersonne implements UpdatePersonneContract
         $repEmail = app(EmailRepositoryContract::class);
         $repPhone = app(PhoneRepositoryContract::class);
 
-        if(!empty($request->date_birth)) {
+        if (!empty($request->date_birth)) {
             $date_birth = (new DateStringToCarbon())->handle($request->date_birth);
         }
 
@@ -41,20 +40,27 @@ class UpdatePersonne implements UpdatePersonneContract
             $request->gender
         );
 
-        if($request->address ?? false) {
+        if ($request->address ?? false) {
             $address = $repAddress->createOrUpdate($personne->address, $request->address, $request->city, $request->code_zip, $request->country_id);
             $repPersonne->makeRelation($personne->address(), $address);
         }
 
 
-        foreach($request->email as $order => $emailStr) {
-            $email = $repEmail->createOrUpdate($personne->emails->where('email', $emailStr)->first(), $emailStr, );
+        foreach ($request->email as $emailStr) {
+            $email = $repEmail->createOrUpdate($personne->emails->where('email', $emailStr)->first(), $emailStr);
             $repPersonne->makeRelation($personne->emails(), $email);
+            $idsEmail[] = $email->id;
         }
 
+        $personne->emails()->sync($idsEmail);
 
-        $phone = $repPhone->createOrUpdate($personne->phones->first(),$request->phone);
-        $repPersonne->makeRelation($personne->phones(), $phone);
+
+        foreach ($request->phone as $phoneStr) {
+            $phone = $repPhone->createOrUpdate($personne->phones->where('phone', $phoneStr)->first(), $phoneStr);
+            $repPersonne->makeRelation($personne->phones(), $phone);
+            $idsPhone[] = $phone->id;
+        }
+        $personne->phones()->sync($idsPhone);
 
         DB::commit();
 

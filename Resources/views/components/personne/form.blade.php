@@ -1,5 +1,6 @@
 <div class="flex flex-wrap">
     <div class="w-full">
+
         <div class="grid grid-cols-2">
             <x-basecore::disabled :disabled="$disabledFields" field-name="firstname">
                 <x-basecore::inputs.group>
@@ -87,43 +88,38 @@
                     </x-basecore::inputs.select>
                 </x-basecore::inputs.group>
             </x-basecore::disabled>
+
+
+
             <x-basecore::disabled :disabled="$disabledFields" field-name="phone">
-                <x-basecore::inputs.group>
-                    <x-basecore::inputs.text
-                        name="phone"
-                        label="Téléphone"
-                        value="{{ old('phone', ($editing ? $personne->phone : '')) }}"
-                        maxlength="255"
-                        required="required"
-                    />
-                </x-basecore::inputs.group>
-            </x-basecore::disabled>
-
-
-
-
-            <x-basecore::list-inputs name="phones"/>
-
-
-
-            <x-basecore::disabled :disabled="$disabledFields" field-name="email">
-                <x-basecore::list-inputs name="emails"
-                                         :items="old('email',($editing ? $personne->personne->emails->pluck('email')->toArray() : []))"
-                >
-                            <x-basecore::inputs.group>
-                                <x-basecore::inputs.email
-                                    name="email[]"
-                                    label="Email"
-                                    x-model="items[index]"
-                                    maxlength="255"
-                                    required="required"
-                                />
-                            </x-basecore::inputs.group>
+                <x-basecore::list-inputs name="phones"
+                                         :btn="'Ajouter un téléphone'"
+                                         :items="old('phone',($editing ? $personne->personne->phones->pluck('phone')->toArray() : []))">
+                    <x-basecore::inputs.group class="w-full">
+                        <x-basecore::inputs.text
+                            name="phone[]"
+                            label="Téléphone"
+                            x-model="items[index]"
+                            maxlength="255"
+                            required="required"/>
+                    </x-basecore::inputs.group>
                 </x-basecore::list-inputs>
             </x-basecore::disabled>
 
-
-
+            <x-basecore::disabled :disabled="$disabledFields" field-name="email">
+                <x-basecore::list-inputs name="emails"
+                                         :btn="'Ajouter un mail'"
+                                         :items="old('email',($editing ? $personne->personne->emails->pluck('email')->toArray() : []))">
+                    <x-basecore::inputs.group class="w-full">
+                        <x-basecore::inputs.email
+                            name="email[]"
+                            label="Email"
+                            x-model="items[index]"
+                            maxlength="255"
+                            required="required"/>
+                    </x-basecore::inputs.group>
+                </x-basecore::list-inputs>
+            </x-basecore::disabled>
 
         </div>
     </div>
