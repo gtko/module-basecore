@@ -43,16 +43,16 @@
                 </x-basecore::inputs.group>
             </x-basecore::disabled>
             <x-basecore::disabled :disabled="$disabledFields" field-name="address">
-            <x-basecore::inputs.group>
-                <x-basecore::inputs.text
-                    name="address"
-                    label="Adresse"
-                    value="{{ old('address', ($editing ? $personne->address : ''))}}"
-                    maxlength="255"
-                    required="required"
-                />
-            </x-basecore::inputs.group>
-        </x-basecore::disabled>
+                <x-basecore::inputs.group>
+                    <x-basecore::inputs.text
+                        name="address"
+                        label="Adresse"
+                        value="{{ old('address', ($editing ? $personne->address : ''))}}"
+                        maxlength="255"
+                        required="required"
+                    />
+                </x-basecore::inputs.group>
+            </x-basecore::disabled>
             <x-basecore::disabled :disabled="$disabledFields" field-name="city">
                 <x-basecore::inputs.group>
                     <x-basecore::inputs.text
@@ -81,7 +81,8 @@
                         @php $selected = old('country_id', ($editing ? $personne->personne->address?->country_id : '150')) @endphp
                         <option disabled {{ empty($selected) ? 'selected' : '' }}>Choisissez votre pays</option>
                         @foreach($countries as $country)
-                            <option value="{{ $country->id }}" {{ $selected == $country->id ? 'selected' : '' }} >{{ $country->name }}</option>
+                            <option
+                                value="{{ $country->id }}" {{ $selected == $country->id ? 'selected' : '' }} >{{ $country->name }}</option>
                         @endforeach
                     </x-basecore::inputs.select>
                 </x-basecore::inputs.group>
@@ -97,17 +98,34 @@
                     />
                 </x-basecore::inputs.group>
             </x-basecore::disabled>
-            <x-basecore::disabled :disabled="$disabledFields" field-name="email">
-                <x-basecore::inputs.group>
-                    <x-basecore::inputs.email
-                        name="email"
-                        label="Email"
-                        value="{{ old('email', ($editing ? $personne->email : '')) }}"
-                        maxlength="255"
-                        required="required"
-                    />
-                </x-basecore::inputs.group>
-            </x-basecore::disabled>
+            <div x-data="{ count: 0 }">
+                <x-basecore::disabled :disabled="$disabledFields" field-name="email">
+                    <x-basecore::inputs.group>
+                        <x-basecore::inputs.email
+                            name="email"
+                            label="Email"
+                            value="{{ old('email', ($editing ? $personne->email : '')) }}"
+                            maxlength="255"
+                            required="required"
+                        />
+                    </x-basecore::inputs.group>
+                </x-basecore::disabled>
+                <span x-on:click="count--">Decrement</span>
+                <code>count: </code><code x-text="count"></code>
+                <span x-on:click="count++">Increment</span>
+            </div>
+
+
+
+
+
+
+
         </div>
     </div>
 </div>
+
+
+
+
+
