@@ -3,6 +3,7 @@
 
 namespace Modules\BaseCore\Contracts\Repositories;
 
+use Illuminate\Database\Eloquent\Collection;
 use Modules\BaseCore\Models\Email;
 use Modules\SearchCRM\Interfaces\SearchableRepository;
 
@@ -13,3 +14,4 @@ interface EmailRepositoryContract extends SearchableRepository, RelationsReposit
     public function fetchByEmail(string $email): ?Email;
 
 }
+

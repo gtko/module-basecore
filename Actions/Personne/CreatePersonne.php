@@ -17,7 +17,8 @@ class CreatePersonne implements CreatePersonneContract
 
     public function create(PersonneStoreRequest $request): Personne
     {
-        if(!empty($request->date_birth)) {
+
+        if (!empty($request->date_birth)) {
             $date_birth = (new DateStringToCarbon())->handle($request->date_birth);
         }
 
@@ -28,7 +29,7 @@ class CreatePersonne implements CreatePersonneContract
         $repEmail = app(EmailRepositoryContract::class);
         $repPhone = app(PhoneRepositoryContract::class);
 
-        if(!empty($request->date_birth)) {
+        if (!empty($request->date_birth)) {
             $date_birth = (new DateStringToCarbon())->handle($request->date_birth);
         }
 
@@ -39,19 +40,24 @@ class CreatePersonne implements CreatePersonneContract
             $request->gender ?? 'other',
         );
 
-        if($request->address ?? false) {
+        if ($request->address ?? false) {
             $address = $repAddress->create($request->address, $request->city, $request->code_zip, $request->country_id);
             $repPersonne->makeRelation($personne->address(), $address);
         }
 
-        $email = $repEmail->create($request->email);
-        $repPersonne->makeRelation($personne->emails(), $email);
 
-        $phone = $repPhone->create((string) $request->phone);
-        $repPersonne->makeRelation($personne->phones(), $phone);
+        foreach ($request->email as $strEmail)
+        {
+            $email = $repEmail->create($strEmail);
+            $repPersonne->makeRelation($personne->emails(), $email);
+        }
+        foreach ($request->phone as $strPhone)
+        {
+            $phone = $repPhone->create((string)$strPhone);
+            $repPersonne->makeRelation($personne->phones(), $phone);
+        }
 
         DB::commit();
-
         return $personne;
     }
 }

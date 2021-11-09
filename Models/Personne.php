@@ -69,6 +69,7 @@ class Personne extends Model
         return $this->belongsToMany(Phone::class)->orderBy('order', 'asc');
     }
 
+
     /**
      * Create a new factory instance for the model.
      *
