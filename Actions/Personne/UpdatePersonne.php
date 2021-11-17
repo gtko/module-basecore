@@ -45,22 +45,8 @@ class UpdatePersonne implements UpdatePersonneContract
             $repPersonne->makeRelation($personne->address(), $address);
         }
 
-
-        foreach ($request->email as $emailStr) {
-            $email = $repEmail->createOrUpdate($personne->emails->where('email', $emailStr)->first(), $emailStr);
-            $repPersonne->makeRelation($personne->emails(), $email);
-            $idsEmail[] = $email->id;
-        }
-
-        $personne->emails()->sync($idsEmail);
-
-
-        foreach ($request->phone as $phoneStr) {
-            $phone = $repPhone->createOrUpdate($personne->phones->where('phone', $phoneStr)->first(), $phoneStr);
-            $repPersonne->makeRelation($personne->phones(), $phone);
-            $idsPhone[] = $phone->id;
-        }
-        $personne->phones()->sync($idsPhone);
+        (new PersonneAddEmail())->add($request->email, $personne);
+        (new PersonneAddPhone())->add($request->phone, $personne);
 
         DB::commit();
 
