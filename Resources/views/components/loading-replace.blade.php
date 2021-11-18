@@ -18,7 +18,7 @@
             </span>
         @endif
     </div>
-    <span wire:loading.remove>
+    <span wire:loading.remove  {{$attributes}}>
         {{ $slot }}
     </span>
 </div>
