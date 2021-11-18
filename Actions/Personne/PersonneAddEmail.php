@@ -21,8 +21,6 @@ class PersonneAddEmail
             $idsEmail[] = $email->id;
         }
 
-//        dd('fin');
-
         $personne->emails()->sync($idsEmail);
     }
 
