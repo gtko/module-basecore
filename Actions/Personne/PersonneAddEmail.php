@@ -16,9 +16,11 @@ class PersonneAddEmail
         $repEmail = app(EmailRepositoryContract::class);
 
         foreach ($emails as $order => $emailStr) {
-            $email = $repEmail->createOrUpdate(Email::where('email', $emailStr)->first(), $emailStr);
-            $repPersonne->makeRelation($personne->emails(), $email, ['order' => $order]);
-            $idsEmail[] = $email->id;
+            if(!empty($emailStr)) {
+                $email = $repEmail->createOrUpdate(Email::where('email', $emailStr)->first(), $emailStr);
+                $repPersonne->makeRelation($personne->emails(), $email, ['order' => $order]);
+                $idsEmail[] = $email->id;
+            }
         }
 
         $personne->emails()->sync($idsEmail);
