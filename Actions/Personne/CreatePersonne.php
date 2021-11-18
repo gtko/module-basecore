@@ -15,8 +15,10 @@ use Modules\BaseCore\Models\Personne;
 class CreatePersonne implements CreatePersonneContract
 {
 
+
     public function create(PersonneStoreRequest $request): Personne
     {
+        (new CleanOrphelinMailAndPhone())->clean();
 
         if (!empty($request->date_birth)) {
             $date_birth = (new DateStringToCarbon())->handle($request->date_birth);
