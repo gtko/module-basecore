@@ -30,7 +30,7 @@ class Email extends Model
 
     public function personnes():BelongsToMany
     {
-        return $this->belongsToMany(Personne::class);
+        return $this->belongsToMany(Personne::class)->withPivot('order');
     }
 
     /**
