@@ -1,10 +1,14 @@
 
 <script>
     let {{$name}} = function(){
-        console.log( {!! json_encode($items) !!})
         return {
             count: 1,
             items : {!! json_encode($items) !!},
+            init(){
+               if(this.items.length === 0){
+                   this.add();
+               }
+            },
             remove(index){
                 console.log(index)
                 this.items = this.items.filter((value, key) => {
@@ -27,7 +31,7 @@
     </button>
     <template x-for="(item, index) in items">
         <div class="flex flex-row items-center">
-            {{$slot}} <button type="button" class="max-h-3" x-on:click="remove(index)"> @icon('delete', null, 'mr-2 mt-3')</button>
+            {{$slot}} <button type="button" class="hover:text-red-700 max-h-3" x-on:click="remove(index)"> @icon('delete', null, 'mr-2 mt-3')</button>
         </div>
     </template>
 
