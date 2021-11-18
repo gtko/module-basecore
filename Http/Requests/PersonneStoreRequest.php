@@ -10,6 +10,7 @@ use Illuminate\Validation\Rule;
 use Modules\BaseCore\Contracts\Repositories\EmailRepositoryContract;
 use Modules\BaseCore\Contracts\Repositories\PhoneRepositoryContract;
 use Modules\BaseCore\Models\Email;
+use Modules\BaseCore\Models\Phone;
 
 /**
  * Class PersonneStoreRequest
@@ -78,17 +79,14 @@ class PersonneStoreRequest extends FormRequest
 
     public function existsPhone(int $personne_id = null, $champ_request = 'phone'){
         $this->existsField($champ_request, function() use ($personne_id, $champ_request){
-            $phoneRep = app(PhoneRepositoryContract::class);
-            $phone = $phoneRep->fetchByPhone($this->{$champ_request} ?? '');
-            if($phone) {
-                $query = DB::table('personne_phone')
-                    ->where('phone_id', $phone->id);
+            $phones = Phone::whereIn('phone',$this->{$champ_request})->get();
+            foreach($phones as $phone) {
+                $exist = DB::table('personne_phone')
+                    ->where('phone_id', $phone->id)
+                    ->where('personne_id', '!=', $personne_id)
+                    ->exists();
 
-                if($personne_id){
-                    $query->where('personne_id', '!=', $personne_id);
-                }
-
-                return $query->exists();
+                if($exist) return true;
             }
 
             return false;
