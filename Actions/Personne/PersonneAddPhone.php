@@ -15,10 +15,12 @@ class PersonneAddPhone
         $repPersonne = app(PersonneRepositoryContract::class);
         $repPhone = app(PhoneRepositoryContract::class);
 
-        foreach ($phones as $phoneStr) {
-            $phone = $repPhone->createOrUpdate(Phone::where('phone', $phoneStr)->first(), $phoneStr);
-            $repPersonne->makeRelation($personne->phones(), $phone);
-            $idsPhone[] = $phone->id;
+        foreach ($phones as $order => $phoneStr) {
+            if(!empty($phoneStr)) {
+                $phone = $repPhone->createOrUpdate(Phone::where('phone', $phoneStr)->first(), $phoneStr);
+                $repPersonne->makeRelation($personne->phones(), $phone, ['order' => $order]);
+                $idsPhone[] = $phone->id;
+            }
         }
         $personne->phones()->sync($idsPhone);
     }
