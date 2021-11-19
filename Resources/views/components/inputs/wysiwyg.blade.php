@@ -19,10 +19,6 @@
                 @this.set('{{$name}}', $(this).trumbowyg('html'));
             });
 
-            $watch('content', (content) => {
-                if(content === $(this).trumbowyg('html')) return;
-                $('#{{$name}}').trumbowyg('html', content);
-            })
         }"
         wire:ignore
         {{ $attributes->whereDoesntStartWith('wire:model') }}
