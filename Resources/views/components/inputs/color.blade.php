@@ -11,9 +11,9 @@
     type="color"
     id="{{ $name }}"
     name="{{ $name }}"
+    {{ $attributes->merge(['class' => '']) }}
     value="{{ old($name, $value ?? '') }}"
     {{ ($required ?? false) ? 'required' : '' }}
-    {{ $attributes->merge(['class' => '']) }}
     autocomplete="off"
 />
 
