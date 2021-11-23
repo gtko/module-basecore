@@ -141,7 +141,7 @@ trait HasPersonne
     public function getFormatPhoneAttribute()
     {
         $phone = str_replace('+33 ', '0', $this->phone);
-        return $phone;
+        return trim($phone);
     }
 
     public function getHasNameAttribute()
