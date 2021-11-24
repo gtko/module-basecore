@@ -76,7 +76,7 @@ class BaseCoreServiceProvider extends ServiceProvider
         ]);
 
         View::composer('*', MenuComposer::class);
-        View::composer('*', DarkModeComposer::class);
+//        View::composer('*', DarkModeComposer::class);
         View::composer('*', LoggedInUserComposer::class);
 
         Blade::directive('icon', function ($name, $size = '24', $class = '') {
