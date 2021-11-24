@@ -3,5 +3,20 @@
     'label',
     'value',
 ])
+@if($label ?? null)
+    @include('basecore::components.inputs.partials.label')
+@endif
 
-<x-basecore::inputs.basic type="color" :name="$name" label="{{ $label ?? ''}}" :value="$value ?? ''" :attributes="$attributes"></x-basecore::inputs.basic>
+<input
+    type="color"
+    id="{{ $name }}"
+    name="{{ $name }}"
+    {{ $attributes->merge(['class' => '']) }}
+    value="{{ old($name, $value ?? '') }}"
+    {{ ($required ?? false) ? 'required' : '' }}
+    autocomplete="off"
+/>
+
+@error($name)
+@include('basecore::components.inputs.partials.error')
+@enderror

@@ -25,21 +25,21 @@ abstract class AbstractModal extends Component
 
     abstract public function getKey():string;
 
-    public function toggle($arguments)
+    public function toggle(array $arguments = [])
     {
-        $this->arguments = $arguments;
+        $this->arguments = array_merge($this->arguments, $arguments);
         $this->isOpen = !$this->isOpen;
     }
 
-    public function close($arguments)
+    public function close(array $arguments = [])
     {
-        $this->arguments = $arguments;
+        $this->arguments = array_merge($this->arguments, $arguments);
         $this->isOpen = false;
     }
 
-    public function open($arguments)
+    public function open(array $arguments = [])
     {
-        $this->arguments = $arguments;
+        $this->arguments = array_merge($this->arguments, $arguments);
         $this->isOpen = true;
     }
 }
