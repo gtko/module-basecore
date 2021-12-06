@@ -72,6 +72,8 @@ use Illuminate\Support\Str;
  * @method static checkCircle(int $size, string $class = '')
  * @method static viewboard(int $size, string $class = '')
  * @method static lightningBolt(int $size, string $class = '')
+ * @method static infinity(int $size, string $class = '')
+ * @method static badgeCheck(int $size, string $class = '')
  * @package App\Icons
  */
 class Icons
@@ -143,6 +145,8 @@ class Icons
         'viewboard' => '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" /></svg>',
         'lightningBolt' => '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>',
         'flag' => '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" /></svg>',
+        'infinity' => '<svg fill="none" stroke="currentColor" viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M488.88 96C406.31 96 346.21 178.45 320 222.45 293.79 178.45 233.69 96 151.12 96 67.78 96 0 167.78 0 256s67.78 160 151.12 160c82.56 0 142.67-82.45 168.88-126.46C346.21 333.55 406.31 416 488.88 416 572.22 416 640 344.22 640 256S572.22 96 488.88 96zM151.12 384C85.44 384 32 326.58 32 256s53.44-128 119.12-128c78.03 0 136.47 100.61 150.94 128-14.47 27.39-72.9 128-150.94 128zm337.76 0c-78.03 0-136.47-100.61-150.94-128 14.47-27.39 72.91-128 150.94-128C554.56 128 608 185.42 608 256s-53.44 128-119.12 128z" class=""></path></svg>',
+        'badgeCheck' => '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>',
     ];
 
     public function getAll(): array
