@@ -5,8 +5,11 @@ namespace Modules\BaseCore\Providers;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Modules\BaseCore\Actions\Url\SigneRoute;
 use Modules\BaseCore\Http\Middleware\CheckFeaturesMiddleware;
 use Modules\BaseCore\Http\Middleware\CheckInfoAuthMiddleware;
+use Modules\BaseCore\Http\Middleware\SigneRouteMiddleware;
+use Modules\CoreCRM\Http\Middleware\SecureDevis;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -28,6 +31,8 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::boot();
         $kernel = $this->app->make(Kernel::class);
+
+        $this->app['router']->aliasMiddleware('secure.signate' , SigneRouteMiddleware::class);
 
         if(in_array('register', config('basecore.features'))) {
             $kernel->appendMiddlewareToGroup('web', CheckFeaturesMiddleware::class);
