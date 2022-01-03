@@ -68,11 +68,11 @@ class User extends UserEntity
 
 
     public function getCompanyAttribute(){
-        return $this->data['company'] ?? '';
+        return $this->data['company'] ?? null;
     }
 
     public function getSiretAttribute(){
-        return $this->data['siret'] ?? '';
+        return $this->data['siret'] ?? null;
     }
 
 
