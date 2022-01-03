@@ -42,5 +42,4 @@ Abstract class UserEntity extends Authenticatable implements TypePersonne, Searc
     abstract public function personne():BelongsTo;
     abstract public function isSuperAdmin():bool;
     abstract public function getSearchResult(): SearchResult;
-
 }

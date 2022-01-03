@@ -7,6 +7,8 @@ namespace Modules\BaseCore\Http\Requests;
  * @property array $roles;
  * @property string $password;
  * @property string $password_smtp;
+ * @property string $company;
+ * @property string $siret;
  * @package Modules\BaseCore\Http\Requests
  */
 class UserUpdateRequest extends PersonneUpdateRequest
@@ -30,7 +32,8 @@ class UserUpdateRequest extends PersonneUpdateRequest
     {
         $rules = Parent::rules();
         $rules['password'] = [''];
-        $rules['password_smtp'] = [''];
+        $rules['company'] = '';
+        $rules['siret'] = '';
         $rules['roles'] = 'required|array|min:1';
 
         return $rules;

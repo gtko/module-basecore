@@ -21,9 +21,9 @@ class UserRepository extends AbstractRepository implements UserRepositoryContrac
      * @param string $password
      * @return User
      */
-    public function create(Personne $personne, array $roles , string $password): UserEntity
+    public function create(Personne $personne, array $roles , string $password, array $data = []): UserEntity
     {
-        $validated = [];
+        $validated = ['data' => $data];
         $validated['password'] = Hash::make($password);
         $validated['personne_id'] = $personne->id;
 
@@ -34,15 +34,14 @@ class UserRepository extends AbstractRepository implements UserRepositoryContrac
         return $user;
     }
 
-    public function update(UserEntity $user, array $roles, string $password = null,): UserEntity
+    public function update(UserEntity $user, array $roles, string $password = null,array $data = []): UserEntity
     {
-        $validated = [];
+        $validated = ['data' => $data];
         if ($password) {
             $validated['password'] = Hash::make($password);
         }
 
         $user->update($validated);
-
         $user->syncRoles($roles);
 
         return $user;

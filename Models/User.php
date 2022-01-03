@@ -23,13 +23,17 @@ use Spatie\Permission\Traits\HasRoles;
  * Class User
  * @package Modules\BaseCore\Models
  * @property int $id
+ * @property array $data
  * @mixin Builder
  * @mixin \Illuminate\Database\Query\Builder
  */
 class User extends UserEntity
 {
 
-    protected $fillable = ['password', 'personne_id', 'email'];
+    protected $fillable = ['password', 'personne_id', 'email', 'data'];
+
+
+    protected $casts = ['data' => 'array'];
 
     protected static function newFactory():Factory
     {
@@ -61,4 +65,15 @@ class User extends UserEntity
         $result->setImg($this->avatar_url);
         return $result;
     }
+
+
+    public function getCompanyAttribute(){
+        return $this->data['company'] ?? '';
+    }
+
+    public function getSiretAttribute(){
+        return $this->data['siret'] ?? '';
+    }
+
+
 }

@@ -49,7 +49,10 @@ class UserController extends Controller
     {
         $this->authorize('create', app(UserEntity::class)::class);
         $personne = $create_personne->create($request);
-        $user = $repUser->create($personne, $request->roles,$request->password);
+        $user = $repUser->create($personne, $request->roles,$request->password, [
+            'company' => $request->company ?? '',
+            'siret' => $request->siret ?? '',
+        ]);
 
         return redirect()
             ->route('users.edit', $user)
@@ -94,7 +97,10 @@ class UserController extends Controller
         $this->authorize('update', $user);
 
         $updatePersonne->update($request, $user->personne);
-        $user = $repUser->update($user, $request->roles, $request->password, $request->password_smtp);
+        $user = $repUser->update($user, $request->roles, $request->password,[
+            'company' => $request->company ?? '',
+            'siret' => $request->siret ?? '',
+        ]);
 
         return redirect()
             ->route('users.edit', $user)
