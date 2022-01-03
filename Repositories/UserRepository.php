@@ -87,4 +87,11 @@ class UserRepository extends AbstractRepository implements UserRepositoryContrac
             });
         })->first();
     }
+
+    public function getUserByRoleName(array $roles): Collection
+    {
+        return $this->newQuery()->whereHas('roles', function($query) use ($roles){
+            $query->whereIn('name', $roles);
+        })->get();
+    }
 }
