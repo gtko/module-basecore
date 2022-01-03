@@ -48,9 +48,8 @@ class UserController extends Controller
     public function store(UserStoreRequest $request, CreatePersonneContract $create_personne, UserRepositoryContract $repUser)
     {
         $this->authorize('create', app(UserEntity::class)::class);
-
         $personne = $create_personne->create($request);
-        $user = $repUser->create($personne, $request->roles,$request->password, $request->password_smtp);
+        $user = $repUser->create($personne, $request->roles,$request->password);
 
         return redirect()
             ->route('users.edit', $user)

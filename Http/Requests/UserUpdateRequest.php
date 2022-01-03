@@ -31,7 +31,7 @@ class UserUpdateRequest extends PersonneUpdateRequest
         $rules = Parent::rules();
         $rules['password'] = [''];
         $rules['password_smtp'] = [''];
-        $rules['roles'] = 'array';
+        $rules['roles'] = 'required|array|min:1';
 
         return $rules;
     }

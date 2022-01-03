@@ -31,7 +31,7 @@ class UserStoreRequest extends PersonneStoreRequest
         $rules = Parent::rules();
         $rules['password'] = ['required'];
         $rules['password_smtp'] = [''];
-        $rules['roles'] = 'array';
+        $rules['roles'] = 'required|array|min:1';
 
         return $rules;
     }

@@ -12,7 +12,7 @@
     $checked = !! $checked
 @endphp
 
-<div class="relative block mb-2">
+<label class="relative block cursor-pointer" for="{{ $id ?? $name }}">
 
     {{-- Adds a hidden default value to be send if checked is false --}}
     @if($addHiddenValue)
@@ -25,15 +25,15 @@
         name="{{ $name }}"
         value="{{ $value ?? 1 }}"
         {{ $checked ? 'checked' : '' }}
-        {{ $attributes->merge(['class' => '']) }}
+        {{ $attributes->merge(['class' => 'cursor-pointer']) }}
     >
 
     @if($label ?? null)
-        <label class="text-gray-700 pl-2" for="{{ $name }}">
+        <span class="text-gray-700 pl-2" >
             {{ $label }}
-        </label>
+        </span>
     @endif
-</div>
+</label>
 
 @error($name)
     @include('basecore::components.inputs.partials.error')

@@ -13,13 +13,14 @@
     </x-basecore::inputs.group>
 
     <div class="px-4 my-4">
-        <h4 class="font-bold text-lg text-gray-700">
-            Assign @lang('crud.roles.name')
+        <h4 class="font-bold text-lg text-gray-700 mb-4">
+            Assigner un ou plusieur rôle.
         </h4>
 
-        <div class="py-2">
+        <div class="grid grid-cols-3 gap-4">
             @foreach ($roles as $role)
-            <div>
+            <div class="border border-dashed py-2 px-4" x-data="{checked:'{{isset($user) ? $user->hasRole($role) : false}}'}"
+                 x-bind:class="{'bg-blue-100' : checked}">
                 <x-basecore::inputs.checkbox
                     id="role{{ $role->id }}"
                     name="roles[]"
@@ -27,9 +28,15 @@
                     value="{{ $role->id }}"
                     :checked="isset($user) ? $user->hasRole($role) : false"
                     :add-hidden-value="false"
-                ></x-basecore::inputs.checkbox>
+                    x-model="checked"
+                />
             </div>
             @endforeach
+        </div>
+        <div class="mt-2">
+        @error("roles")
+            @include('basecore::components.inputs.partials.error')
+        @enderror
         </div>
     </div>
 </div>
