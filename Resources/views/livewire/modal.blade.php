@@ -1,6 +1,6 @@
 <div>
     @if($isOpen)
-    <x-jet-modal wire:model.defer="isOpen" max-width="lg">
+    <x-jet-modal wire:model.defer="isOpen" max-width="{{$size}}">
             @if(!$typeView->isEmpty())
                 @if($typeView->hasBladeComponentType())
                     <x-dynamic-component :component="$typeView->getContent()"

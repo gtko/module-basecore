@@ -12,12 +12,14 @@ class Modal extends AbstractModal
     public string $type = '';
     public string $path = '';
     public array $arguments = [];
+    public string $size = 'lg';
 
-    public function mount(string $name, string $type = '', string $path = '', array $arguments = []){
+    public function mount(string $name, string $type = '', string $path = '', array $arguments = [], string $size = 'lg'){
         $this->name = $name;
         $this->type = $type;
         $this->path = $path;
         $this->arguments = $arguments;
+        $this->size = $size;
 
     }
 
