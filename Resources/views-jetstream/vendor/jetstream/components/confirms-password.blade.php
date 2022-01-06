@@ -15,7 +15,7 @@
 </span>
 
 @once
-<x-jet-dialog-modal wire:model="confirmingPassword">
+<x-jet-dialog-modal wire:model.defer="confirmingPassword">
     <x-slot name="title">
         {{ $title }}
     </x-slot>

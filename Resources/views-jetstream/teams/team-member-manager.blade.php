@@ -169,7 +169,7 @@
     @endif
 
     <!-- Role Management Modal -->
-    <x-jet-dialog-modal wire:model="currentlyManagingRole">
+    <x-jet-dialog-modal wire:model.defer="currentlyManagingRole">
         <x-slot name="title">
             {{ __('Manage Role') }}
         </x-slot>
@@ -213,7 +213,7 @@
     </x-jet-dialog-modal>
 
     <!-- Leave Team Confirmation Modal -->
-    <x-jet-confirmation-modal wire:model="confirmingLeavingTeam">
+    <x-jet-confirmation-modal wire:model.defer="confirmingLeavingTeam">
         <x-slot name="title">
             {{ __('Leave Team') }}
         </x-slot>
@@ -234,7 +234,7 @@
     </x-jet-confirmation-modal>
 
     <!-- Remove Team Member Confirmation Modal -->
-    <x-jet-confirmation-modal wire:model="confirmingTeamMemberRemoval">
+    <x-jet-confirmation-modal wire:model.defer="confirmingTeamMemberRemoval">
         <x-slot name="title">
             {{ __('Remove Team Member') }}
         </x-slot>
