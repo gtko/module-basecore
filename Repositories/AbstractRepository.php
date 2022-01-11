@@ -53,6 +53,12 @@ abstract class AbstractRepository implements SearchableRepository, RepositoryFet
         return $query->paginate($limit);
     }
 
+    public function fetchBetweenDate(string $col, array $between, int $limit = 50): LengthAwarePaginator
+    {
+        return $this->newQuery()->whereBetween($col, $between)->paginate($limit);
+    }
+
+
     public function fetchById(int $id): ?Model
     {
         return $this->newQuery()->find($id);
