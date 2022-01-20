@@ -14,9 +14,10 @@
             Assign @lang('crud.permissions.name')
         </h4>
 
-        <div class="py-2">
+        <div class="grid grid-cols-3 lg:grid-cols-4 gap-4 w-full">
             @foreach ($permissions as $permission)
-            <div>
+                <div class="border border-dashed py-2 px-4" x-data="{checked:'{{isset($role) ? $role->hasPermissionTo($permission) : false}}'}"
+                     x-bind:class="{'bg-blue-100' : checked}">
                 <x-basecore::inputs.checkbox
                     id="permission{{ $permission->id }}"
                     name="permissions[]"
@@ -24,6 +25,7 @@
                     value="{{ $permission->id }}"
                     :checked="isset($role) ? $role->hasPermissionTo($permission) : false"
                     :add-hidden-value="false"
+                    x-on:change="checked=!checked"
                 ></x-basecore::inputs.checkbox>
             </div>
             @endforeach
