@@ -6,10 +6,10 @@
             name="name"
             label="Name"
             value="{{ old('name', ($editing ? $role->name : '')) }}"
-        ></x-basecore::inputs.text>
+        />
     </x-basecore::inputs.group>
 
-    <div class="px-4 my-4">
+    <div class="w-full px-4 my-4">
         <h4 class="font-bold text-lg text-gray-700 mb-4">
             Attribuer les permissions
         </h4>
