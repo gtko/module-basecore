@@ -9,9 +9,9 @@
         ></x-basecore::inputs.text>
     </x-basecore::inputs.group>
 
-    <div class="w-full px-4 my-4">
-        <h4 class="font-bold text-lg text-gray-700">
-            Assign @lang('crud.permissions.name')
+    <div class="px-4 my-4">
+        <h4 class="font-bold text-lg text-gray-700 mb-4">
+            Attribuer les permissions
         </h4>
         <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full">
             @foreach ($permissions as $permission)
