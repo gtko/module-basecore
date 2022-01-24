@@ -18,6 +18,10 @@
             <div class="side-nav__devider my-6 w-full">
             </div>
             <ul class="flex-grow w-full">
+                <x-basecore::resolve-type-view
+                    :contrat-view-class="Modules\BaseCore\Contracts\Views\BeforeInMenuContract::class"
+                    :arguments="[]"
+                />
                 @foreach ($side_menu as $menuKey => $menu)
                     @if ($menu == 'devider')
                         <li class="side-nav__devider my-6"></li>
@@ -89,6 +93,10 @@
                         </li>
                     @endif
                 @endforeach
+                    <x-basecore::resolve-type-view
+                        :contrat-view-class="Modules\BaseCore\Contracts\Views\AfterInMenuContract::class"
+                        :arguments="[]"
+                    />
             </ul>
 
             <x-basecore::resolve-type-view
