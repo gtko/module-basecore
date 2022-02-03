@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-
+use Rennokki\QueryCache\Traits\QueryCacheable;
 /**
  * Class Personne
  * @property int $id
@@ -34,6 +34,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Personne extends Model
 {
     use HasFactory;
+    use QueryCacheable;
 
     protected $fillable = [
         'address_id',

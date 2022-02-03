@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
 /**
  * Class Phone
@@ -23,6 +24,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Phone extends Model
 {
     use HasFactory;
+    use QueryCacheable;
 
     protected $fillable = ['phone'];
 

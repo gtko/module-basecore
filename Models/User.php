@@ -18,6 +18,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Modules\SearchCRM\Entities\SearchResult;
 use Modules\SearchCRM\Interfaces\SearchableModel;
 use Spatie\Permission\Traits\HasRoles;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
 /**
  * Class User
@@ -29,6 +30,8 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends UserEntity
 {
+
+    use QueryCacheable;
 
     protected $fillable = ['password', 'personne_id', 'email', 'data'];
 

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-
+use Rennokki\QueryCache\Traits\QueryCacheable;
 /**
  * Class Address
  * @property int $id
@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Address extends Model
 {
     use HasFactory;
+    use QueryCacheable;
 
     protected $fillable = ['address', 'city', 'country_id', 'code_zip'];
 
