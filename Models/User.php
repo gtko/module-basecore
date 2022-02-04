@@ -2,6 +2,7 @@
 
 namespace Modules\BaseCore\Models;
 
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\BaseCore\Contracts\Entities\UserEntity;
@@ -31,7 +32,10 @@ use Rennokki\QueryCache\Traits\QueryCacheable;
 class User extends UserEntity
 {
 
-    use QueryCacheable;
+//    use QueryCacheable;
+//    use Cachable;
+
+//    protected $cacheFor = 3600;
 
     protected $fillable = ['password', 'personne_id', 'email', 'data'];
 

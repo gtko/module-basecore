@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Modules\BaseCore\Models\Email;
 use Modules\BaseCore\Models\Personne;
+use Modules\CoreCRM\Models\Scopes\HasSingleton;
 
 /**
  * Trait HasPersonne
@@ -35,10 +36,11 @@ trait HasPersonne
 {
 
     use HasAvatar;
+    use HasSingleton;
 
     public function newQuery(): Builder
     {
-        return parent::newQuery()->with(['personne.address.country', 'personne.phones', 'personne.emails']);
+        return parent::newQuery();//->with(['personne.address.country', 'personne.phones', 'personne.emails']);
     }
 
     public function personne()

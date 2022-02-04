@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Rennokki\QueryCache\Traits\QueryCacheable;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 /**
  * Class Address
  * @property int $id
@@ -27,7 +28,10 @@ use Rennokki\QueryCache\Traits\QueryCacheable;
 class Address extends Model
 {
     use HasFactory;
-    use QueryCacheable;
+//    use QueryCacheable;
+//    use Cachable;
+
+//    protected $cacheFor = 3600;
 
     protected $fillable = ['address', 'city', 'country_id', 'code_zip'];
 

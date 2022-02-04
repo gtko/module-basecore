@@ -2,6 +2,7 @@
 
 namespace Modules\BaseCore\Models;
 
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Modules\BaseCore\Models\Scopes\Searchable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -23,7 +24,10 @@ use Rennokki\QueryCache\Traits\QueryCacheable;
 class Country extends Model
 {
     use HasFactory;
-    use QueryCacheable;
+//    use QueryCacheable;
+//    use Cachable;
+
+//    protected $cacheFor = 3600;
 
     protected $fillable = ['name', 'iso'];
 

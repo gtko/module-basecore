@@ -2,6 +2,7 @@
 
 namespace Modules\BaseCore\Providers;
 
+use GeneaLabs\LaravelModelCaching\Providers\Service;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\Facades\Blade;
@@ -64,6 +65,7 @@ class BaseCoreServiceProvider extends ServiceProvider
     public function boot()
     {
 
+        $this->app->register(Service::class);
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();

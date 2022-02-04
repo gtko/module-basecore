@@ -2,6 +2,7 @@
 
 namespace Modules\BaseCore\Models;
 
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Modules\BaseCore\Database\Factories\PersonneFactory;
 use Modules\BaseCore\Database\Factories\PhoneFactory;
 use Modules\BaseCore\Models\Scopes\Searchable;
@@ -24,7 +25,10 @@ use Rennokki\QueryCache\Traits\QueryCacheable;
 class Phone extends Model
 {
     use HasFactory;
-    use QueryCacheable;
+//    use QueryCacheable;
+//    use Cachable;
+
+//    protected $cacheFor = 3600;
 
     protected $fillable = ['phone'];
 
