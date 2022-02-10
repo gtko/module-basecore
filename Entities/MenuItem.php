@@ -12,6 +12,7 @@ class MenuItem implements ArrayAccess
      * @param string $route_name
      * @param string $icon_sup
      * @param string $route_sup
+     * @param string $count
      * @param array<MenuItem> $sub_menu
      */
     public function __construct(
@@ -20,8 +21,12 @@ class MenuItem implements ArrayAccess
         public string $route_name = '',
         public string $icon_sup = '',
         public string $route_sup = '',
-        public array $sub_menu = []
-    ){}
+        public array  $sub_menu = [],
+        public string $count = '',
+
+    )
+    {
+    }
 
     public static function hydrate(array $menuItemArray): MenuItem
     {
@@ -32,6 +37,7 @@ class MenuItem implements ArrayAccess
             $menuItemArray['icon_sup'] ?? '',
             $menuItemArray['route_sup'] ?? '',
             $menuItemArray['sub_menu'] ?? [],
+            $menuItemArray['count'] ?? '',
         );
     }
 
