@@ -26,7 +26,6 @@ Abstract class UserEntity extends Authenticatable implements TypePersonne, Searc
     use HasPersonne;
     use TwoFactorAuthenticatable;
 
-
     protected $hidden = [
         'password',
         'remember_token',
