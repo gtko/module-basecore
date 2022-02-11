@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Modules\BaseCore\Models\Email;
 use Modules\BaseCore\Models\Personne;
-use Modules\CoreCRM\Models\Scopes\HasSingleton;
 
 /**
  * Trait HasPersonne
@@ -36,7 +35,6 @@ trait HasPersonne
 {
 
     use HasAvatar;
-    use HasSingleton;
 
     public function newQuery(): Builder
     {
@@ -87,22 +85,22 @@ trait HasPersonne
 
     public function getAddressAttribute()
     {
-            return $this->personne->address->address ?? '';
+        return $this->personne->address->address ?? '';
     }
 
     public function getCityAttribute()
     {
-            return $this->personne->address->city ?? '';
+        return $this->personne->address->city ?? '';
     }
 
     public function getCodeZipAttribute()
     {
-            return $this->personne->address->code_zip ?? '';
+        return $this->personne->address->code_zip ?? '';
     }
 
     public function getCountryAttribute()
     {
-            return $this->personne->address->country->name ?? '';
+        return $this->personne->address->country->name ?? '';
     }
 
     public function getFullAddressAttribute()

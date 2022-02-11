@@ -32,6 +32,8 @@ use Rennokki\QueryCache\Traits\QueryCacheable;
 class User extends UserEntity
 {
 
+
+
 //    use QueryCacheable;
 //    use Cachable;
 

@@ -23,9 +23,9 @@ class MenuComposer
         $layout = $this->layout($view);
         $activeMenu = $this->activeMenu($pageName, $layout);
 
-        $view->with('top_menu', TopMenu::menu());
+//        $view->with('top_menu', TopMenu::menu());
         $view->with('side_menu', SideMenu::menu());
-        $view->with('simple_menu', SimpleMenu::menu());
+//        $view->with('simple_menu', SimpleMenu::menu());
         $view->with('first_level_active_index', $activeMenu['first_level_active_index']);
         $view->with('second_level_active_index', $activeMenu['second_level_active_index']);
         $view->with('third_level_active_index', $activeMenu['third_level_active_index']);
