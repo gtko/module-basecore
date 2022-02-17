@@ -19,7 +19,6 @@ abstract class AbstractRepository implements SearchableRepository, RepositoryFet
 {
     protected ?Builder $query = null;
 
-
     public function createOrUpdate($modelTested, ...$params){
         if($modelTested) {
             $model = $this->update($modelTested, ...$params);
