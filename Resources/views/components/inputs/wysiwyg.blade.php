@@ -8,22 +8,33 @@
 
 @if($livewire)
     <div
-        x-data="{'content' : $wire.entangle('{{ $name }}').defer}"
+        x-data="{'content' : $wire.entangle('{{ $name }}')}"
         x-init="() => {
-            $('#{{$name}}').trumbowyg('destroy');
-            $('#{{$name}}').trumbowyg({
+            let updateUser = false;
+            let id = '{{$name}}'.replace('.', '_');
+            $('#'+id).trumbowyg('destroy');
+            $('#'+id).trumbowyg({
                 btns: [['undo', 'redo'], ['bold', 'italic', 'underline', 'strikethrough'], ['link'], ['unorderedList'],],
                 autogrow: true,
                 lang: 'fr',
             }).on('tbwchange', function () {
-                @this.set('{{$name}}', $(this).trumbowyg('html'));
+                updateUser = true
+                @this.set('{{$name}}', $(this).trumbowyg('html'))
             });
+
+            $watch('content', (value, oldValue) => {
+                if(!updateUser) {
+                    $('#'+id).trumbowyg('html', value);
+                }
+
+                updateUser = false;
+            })
 
         }"
         wire:ignore
         {{ $attributes->whereDoesntStartWith('wire:model') }}
     >
-        <x-basecore::inputs.textarea :name="$name" :label="$label" wire:model.defer="{{$name}}">{!! $value ?? '' !!}</x-basecore::inputs.textarea>
+        <x-basecore::inputs.textarea :name="$name" :label="$label">{!! $value ?? '' !!}</x-basecore::inputs.textarea>
     </div>
 @else
     <x-basecore::inputs.textarea :name="$name" :label="$label">{!! $value ?? '' !!}</x-basecore::inputs.textarea>
