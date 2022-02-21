@@ -8,7 +8,7 @@
 
 @if($livewire)
     <div
-        x-data="{'content' : $wire.entangle('{{ $name }}')}"
+        x-data="{'content' : $wire.entangle('{{ $name }}').defer}"
         x-init="() => {
             let updateUser = false;
             let id = '{{$name}}'.replace('.', '_');
@@ -17,10 +17,36 @@
                 btns: [['undo', 'redo'], ['bold', 'italic', 'underline', 'strikethrough'], ['link'], ['unorderedList'],],
                 autogrow: true,
                 lang: 'fr',
-            }).on('tbwchange', function () {
+            })
+            .on('tbwinit', function(){
+                let mentionify = $(this).closest('.wrapper-mentionify').length > 0;
+                if(mentionify){
+                    let editor = $(this).closest('.trumbowyg-box').find('.trumbowyg-editor');
+                    window.addMentionify((mention) => {
+                        console.log('Add event', editor, mention);
+                        editor[0].addEventListener('focus', (e) => {
+                            e.target.value = e.target.innerText;
+                            console.log('Focus', e);
+                            mention.focus(e)
+                        })
+
+                        editor[0].addEventListener('input', (e) => {
+                            e.target.selectionStart = window.getCaretpos(e.target)
+                            console.log('Caret', e.target.selectionStart, window.getCaretpos(e.target));
+                            e.target.value = e.target.innerText;
+                            console.log('Change', e);
+                            console.log('change editable')
+                        })
+                    });
+                }
+            })
+            .on('tbwchange', function (e) {
                 updateUser = true
-                @this.set('{{$name}}', $(this).trumbowyg('html'))
+                let value = $(this).trumbowyg('html')
+                console.log('change', value)
+                @this.set('{{$name}}',value , true)
             });
+
 
             $watch('content', (value, oldValue) => {
                 if(!updateUser) {

@@ -4,7 +4,7 @@
         {{ $sidebar ?? ''}}
     </div>
     <!-- END: Sidebar -->
-    <div class="intro-x col-span-12 lg:col-span-8 xxl:col-span-9">
+    <div class="col-span-12 lg:col-span-8 xxl:col-span-9">
         {{ $slot }}
     </div>
 </div>
