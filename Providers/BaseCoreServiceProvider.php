@@ -2,6 +2,7 @@
 
 namespace Modules\BaseCore\Providers;
 
+use GeneaLabs\LaravelModelCaching\Providers\Service;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\Facades\Blade;
@@ -40,6 +41,7 @@ use Modules\BaseCore\Repositories\PersonneRepository;
 use Modules\BaseCore\Repositories\PhoneRepository;
 use Modules\BaseCore\Repositories\RoleRepository;
 use Modules\BaseCore\Repositories\UserRepository;
+use Modules\BaseCore\Services\DarkModeService;
 use Modules\BaseCore\View\Composers\DarkModeComposer;
 use Modules\BaseCore\View\Composers\LoggedInUserComposer;
 use Modules\BaseCore\View\Composers\MenuComposer;
@@ -64,6 +66,7 @@ class BaseCoreServiceProvider extends ServiceProvider
     public function boot()
     {
 
+//        $this->app->register(Service::class);
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
@@ -77,7 +80,7 @@ class BaseCoreServiceProvider extends ServiceProvider
 
         View::composer('*', MenuComposer::class);
         View::composer('*', DarkModeComposer::class);
-        View::composer('*', LoggedInUserComposer::class);
+//        View::composer('*', LoggedInUserComposer::class);
 
         Blade::directive('icon', function ($name, $size = '24', $class = '') {
             return "<?php echo (new Modules\BaseCore\View\Directives\IconDirectiveBlade())->icon($name, $size, $class);?>";
@@ -119,6 +122,7 @@ class BaseCoreServiceProvider extends ServiceProvider
 
         $this->app->singleton(CompositeurThemeContract::class, CompositeurTheme::class);
         $this->app->singleton(FeaturesContract::class, Features::class);
+        $this->app->singleton(DarkModeService::class, DarkModeService::class);
 
 
 

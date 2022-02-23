@@ -8,7 +8,7 @@
 @endif
 
 <textarea
-    id="{{ $name }}"
+    id="{{ str_replace('.', '_', $name) }}"
     name="{{ $name }}"
     rows="2"
     {{ ($required ?? false) ? 'required' : '' }}

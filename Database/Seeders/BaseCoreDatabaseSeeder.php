@@ -27,8 +27,8 @@ class BaseCoreDatabaseSeeder extends Seeder
         $user = UserFactory::new()->create([
                 'personne_id' => Personne::factory()
                     ->hasAttached(Phone::factory()->create())
-                    ->hasAttached(Email::factory()->create(['email' => 'crobs@gmail.com'])),
-                'password' => \Hash::make('crypto!123456'),
+                    ->hasAttached(Email::factory()->create(['email' => 'admin@admin.com'])),
+                'password' => \Hash::make('123456'),
             ]);
 
         $this->call(PermissionsSeeder::class);

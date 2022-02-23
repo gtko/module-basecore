@@ -19,7 +19,6 @@ abstract class AbstractRepository implements SearchableRepository, RepositoryFet
 {
     protected ?Builder $query = null;
 
-
     public function createOrUpdate($modelTested, ...$params){
         if($modelTested) {
             $model = $this->update($modelTested, ...$params);
@@ -52,6 +51,12 @@ abstract class AbstractRepository implements SearchableRepository, RepositoryFet
 
         return $query->paginate($limit);
     }
+
+    public function fetchBetweenDate(string $col, array $between, int $limit = 50): LengthAwarePaginator
+    {
+        return $this->newQuery()->whereBetween($col, $between)->paginate($limit);
+    }
+
 
     public function fetchById(int $id): ?Model
     {

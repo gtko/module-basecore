@@ -2,6 +2,7 @@
 
 namespace Modules\BaseCore\Models;
 
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\BaseCore\Contracts\Entities\UserEntity;
@@ -18,6 +19,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Modules\SearchCRM\Entities\SearchResult;
 use Modules\SearchCRM\Interfaces\SearchableModel;
 use Spatie\Permission\Traits\HasRoles;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
 /**
  * Class User
@@ -29,6 +31,13 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends UserEntity
 {
+
+
+
+//    use QueryCacheable;
+//    use Cachable;
+
+//    protected $cacheFor = 3600;
 
     protected $fillable = ['password', 'personne_id', 'email', 'data'];
 

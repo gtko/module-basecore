@@ -4,6 +4,7 @@ namespace Modules\BaseCore\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Laravel\Sanctum\Sanctum;
+use Modules\BaseCore\Actions\Permissions\GroupePermission;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -36,6 +37,7 @@ class RoleController extends Controller {
         $this->authorize('create', Role::class);
 
         $permissions = Permission::all();
+        $permissions = (new GroupePermission())->group($permissions);
 
         return view('basecore::app.roles.create')->with('permissions', $permissions);
     }
@@ -91,7 +93,7 @@ class RoleController extends Controller {
         $this->authorize('update', $role);
 
         $permissions = Permission::all();
-
+        $permissions = (new GroupePermission())->group($permissions);
         return view('basecore::app.roles.edit')
             ->with('role', $role)
             ->with('permissions', $permissions);

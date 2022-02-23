@@ -31,6 +31,9 @@ class MenuComposer
         $view->with('third_level_active_index', $activeMenu['third_level_active_index']);
         $view->with('page_name', $pageName);
         $view->with('layout', $layout);
+
+
+
     }
 
     /**
@@ -114,8 +117,6 @@ class MenuComposer
                 }
             }
         } else {
-
-
             foreach (SideMenu::menu() as $menuKey => $menu) {
                 if ($menu !== 'devider' && isset($menu['route_name']) && $menu['route_name'] == $pageName && empty($firstPageName)) {
                     $firstLevelActiveIndex = $menuKey;

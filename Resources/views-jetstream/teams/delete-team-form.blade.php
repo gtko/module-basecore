@@ -19,7 +19,7 @@
         </div>
 
         <!-- Delete Team Confirmation Modal -->
-        <x-jet-confirmation-modal wire:model.defer="confirmingTeamDeletion">
+        <x-jet-confirmation-modal wire:model="confirmingTeamDeletion">
             <x-slot name="title">
                 {{ __('Delete Team') }}
             </x-slot>

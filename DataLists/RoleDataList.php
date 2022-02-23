@@ -25,14 +25,6 @@ class RoleDataList extends DataListType
     public function getActions(): array
     {
         return [
-            'show' => [
-                'permission' => ['show', Role::class],
-                'route' => function($params){
-                    return route('roles.show', $params);
-                },
-                'label' => 'voir',
-                'icon' => 'show'
-            ],
             'edit' => [
                 'permission' => ['update', Role::class],
                 'route' => function($params){

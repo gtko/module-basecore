@@ -2,6 +2,7 @@
 
 namespace Modules\BaseCore\Models;
 
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Modules\BaseCore\Contracts\Entities\UserEntity;
 use Modules\BaseCore\Database\Factories\PersonneFactory;
 use Carbon\Carbon;
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-
+use Rennokki\QueryCache\Traits\QueryCacheable;
 /**
  * Class Personne
  * @property int $id
@@ -34,6 +35,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Personne extends Model
 {
     use HasFactory;
+//    use QueryCacheable;
+//    use Cachable;
+
+//    protected $cacheFor = 3600;
 
     protected $fillable = [
         'address_id',

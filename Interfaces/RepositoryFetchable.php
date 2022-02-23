@@ -13,5 +13,7 @@ interface RepositoryFetchable
     public function fetchAll(int $limit = 50):LengthAwarePaginator;
     public function fetchSearch(string $value, int $limit = 50):LengthAwarePaginator;
 
+    public function fetchBetweenDate(string $col, array $between, int $limit = 50):LengthAwarePaginator;
+
     public function fetchById(int $id):?Model;
 }

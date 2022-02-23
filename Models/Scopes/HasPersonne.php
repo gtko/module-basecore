@@ -38,7 +38,7 @@ trait HasPersonne
 
     public function newQuery(): Builder
     {
-        return parent::newQuery()->with(['personne.address.country', 'personne.phones', 'personne.emails']);
+        return parent::newQuery();//->with(['personne.address.country', 'personne.phones', 'personne.emails']);
     }
 
     public function personne()
@@ -85,22 +85,22 @@ trait HasPersonne
 
     public function getAddressAttribute()
     {
-            return $this->personne->address->address ?? '';
+        return $this->personne->address->address ?? '';
     }
 
     public function getCityAttribute()
     {
-            return $this->personne->address->city ?? '';
+        return $this->personne->address->city ?? '';
     }
 
     public function getCodeZipAttribute()
     {
-            return $this->personne->address->code_zip ?? '';
+        return $this->personne->address->code_zip ?? '';
     }
 
     public function getCountryAttribute()
     {
-            return $this->personne->address->country->name ?? '';
+        return $this->personne->address->country->name ?? '';
     }
 
     public function getFullAddressAttribute()

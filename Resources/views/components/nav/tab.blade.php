@@ -1,3 +1,3 @@
-<div x-show="tab==='{{$name}}'" class="intro-x">
+<div x-show="tab==='{{$name}}'" >
    {{$slot ?? ''}}
 </div>

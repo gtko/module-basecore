@@ -18,6 +18,10 @@
             <div class="side-nav__devider my-6 w-full">
             </div>
             <ul class="flex-grow w-full">
+                <x-basecore::resolve-type-view
+                    :contrat-view-class="Modules\BaseCore\Contracts\Views\BeforeInMenuContract::class"
+                    :arguments="[]"
+                />
                 @foreach ($side_menu as $menuKey => $menu)
                     @if ($menu == 'devider')
                         <li class="side-nav__devider my-6"></li>
@@ -46,6 +50,14 @@
                                     @icon($menu['icon_sup'])
                                 </a>
                                 @endif
+
+
+                                @if($menu['count'] != '')
+                                    <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 mr-2">
+                                       {{$menu['count']}}
+                                    </span>
+                                @endif
+
                             </span>
                             @if (isset($menu['sub_menu']))
                                 <ul class="{{ $first_level_active_index == $menuKey ? 'side-menu__sub-open' : '' }}">
@@ -89,6 +101,10 @@
                         </li>
                     @endif
                 @endforeach
+                <x-basecore::resolve-type-view
+                    :contrat-view-class="Modules\BaseCore\Contracts\Views\AfterInMenuContract::class"
+                    :arguments="[]"
+                />
             </ul>
 
             <x-basecore::resolve-type-view
@@ -106,7 +122,7 @@
             </div>
         </div>
 
-{{--        <livewire:time-tracker-commercial />--}}
+        {{--        <livewire:time-tracker-commercial />--}}
 
     </div>
 @endsection

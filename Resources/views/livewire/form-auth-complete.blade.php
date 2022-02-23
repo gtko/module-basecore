@@ -129,7 +129,7 @@
                             <x-basecore::inputs.email
                                 wire:model="email"
                                 name="email"
-                                label="{{ __('warmelous::crud.inbox.inputs.email') }}"
+                                label="Email"
                                 maxlength="255"
                                 value="{{ $personne->emails->first()->email ?? '' }}"
                                 disabled

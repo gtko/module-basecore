@@ -2,6 +2,7 @@
 
 namespace Modules\BaseCore\Models;
 
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Modules\BaseCore\Database\Factories\EmailFactory;
 use Modules\BaseCore\Database\Factories\PhoneFactory;
 use Modules\BaseCore\Models\Scopes\Searchable;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-
+use Rennokki\QueryCache\Traits\QueryCacheable;
 /**
  * Class Email
  * @property int $id
@@ -23,6 +24,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Email extends Model
 {
     use HasFactory;
+//    use QueryCacheable;
+//    use Cachable;
+
+//    protected $cacheFor = 3600;
 
     protected $fillable = ['email'];
 
