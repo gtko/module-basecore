@@ -7,6 +7,10 @@
     'variableData' => []
 ])
 
+@php
+    $id = str_replace('.', '_', $name);
+@endphp
+
 @if($livewire)
 
     @php
@@ -26,10 +30,10 @@
         x-init="() => {
             console.log('CONTENT', content);
 
-            var PLACEHOLDERS = {{ Illuminate\Support\Js::from($jsonData) }};
+            const PLACEHOLDERS = {{ Illuminate\Support\Js::from($jsonData) }};
             CKEDITOR.addCss('span > .cke_placeholder { background-color: #ffeec2; }');
 
-            CKEDITOR.replace('{{ $name }}', {
+            const editor = CKEDITOR.replace('{{ $name }}', {
               plugins: 'autocomplete,textmatch,toolbar,wysiwygarea,basicstyles,link,undo,placeholder',
               toolbar: [
                 {
@@ -72,6 +76,10 @@
             removeButtons: 'PasteFromWord'
     });
 
+    Livewire.on('changeWysiwyg', () => {
+        editor.setData(content);
+    })
+
     function textTestCallback(range) {
         if (!range.collapsed) {
         return null;
@@ -108,10 +116,10 @@
         wire:ignore
         {{ $attributes->whereDoesntStartWith('wire:model') }}
     >
-        <x-basecore::inputs.textarea :name="$name" :label="$label">{!! $value ?? '' !!}</x-basecore::inputs.textarea>
+        <x-basecore::inputs.textarea :name="$name" {{ $attributes->only(['wire:model']) }} :label="$label">{!! $value ?? '' !!}</x-basecore::inputs.textarea>
     </div>
 @else
-    <x-basecore::inputs.textarea :name="$name" :label="$label">{!! $value ?? '' !!}</x-basecore::inputs.textarea>
+    <x-basecore::inputs.textarea :name="$name" {{ $attributes->only(['wire:model']) }}  :label="$label">{!! $value ?? '' !!}</x-basecore::inputs.textarea>
 @endif
 
 <style>
@@ -123,8 +131,8 @@
 @push('scripts')
     @if(!$livewire)
             <script>
-                $('#{{$name}}').trumbowyg('destroy');
-                $('#{{$name}}').trumbowyg({
+                $('#{{$id}}').trumbowyg('destroy');
+                $('#{{$id}}').trumbowyg({
                     btns: [['undo', 'redo'], ['bold', 'italic', 'underline', 'strikethrough'], ['link'], ['unorderedList'],],
                     autogrow: true,
                     lang: 'fr',
