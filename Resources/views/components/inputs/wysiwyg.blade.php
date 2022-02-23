@@ -30,7 +30,7 @@
         x-init="() => {
             console.log('CONTENT', content);
 
-            const PLACEHOLDERS = {{ Illuminate\Support\Js::from($jsonData) }};
+            const PLACEHOLDERS = {{ json_encode($jsonData) }};
             CKEDITOR.addCss('span > .cke_placeholder { background-color: #ffeec2; }');
 
             const editor = CKEDITOR.replace('{{ $name }}', {
