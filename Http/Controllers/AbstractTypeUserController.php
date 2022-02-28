@@ -30,7 +30,6 @@ abstract class AbstractTypeUserController extends Controller
         return [];
     }
 
-
     /**
      * @param Model $model
      * @param string $type
@@ -65,6 +64,7 @@ abstract class AbstractTypeUserController extends Controller
      * Show the form for creating a new resource.
      *
      * @return Application|Factory|View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
     {

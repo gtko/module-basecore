@@ -14,11 +14,12 @@ use Modules\BaseCore\Contracts\Repositories\PhoneRepositoryContract;
 use Modules\BaseCore\Http\Requests\PersonneUpdateRequest;
 use Modules\BaseCore\Models\Email;
 use Modules\BaseCore\Models\Personne;
+use Modules\CrmAutoCar\Http\Requests\fournisseurUpdateRequest;
 
 class UpdatePersonne implements UpdatePersonneContract
 {
 
-    public function update(PersonneUpdateRequest $request, Personne $personne): Personne
+    public function update(fournisseurUpdateRequest|PersonneUpdateRequest $request, Personne $personne): Personne
     {
         DB::beginTransaction();
 
