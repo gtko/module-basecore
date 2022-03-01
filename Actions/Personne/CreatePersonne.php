@@ -17,7 +17,7 @@ class CreatePersonne implements CreatePersonneContract
 {
 
 
-    public function create(fournisseurUpdateRequest|PersonneStoreRequest $request): Personne
+    public function create(fournisseurUpdateRequest|PersonneStoreRequest|\Illuminate\Http\Request $request): Personne
     {
         (new CleanOrphelinMailAndPhone())->clean();
 
