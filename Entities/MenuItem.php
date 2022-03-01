@@ -13,6 +13,7 @@ class MenuItem implements ArrayAccess
      * @param string $icon_sup
      * @param string $route_sup
      * @param string $count
+     * @param string $link_count
      * @param array<MenuItem> $sub_menu
      */
     public function __construct(
@@ -23,6 +24,7 @@ class MenuItem implements ArrayAccess
         public string $route_sup = '',
         public array  $sub_menu = [],
         public string $count = '',
+        public string $link_count = '',
 
     )
     {
@@ -38,6 +40,7 @@ class MenuItem implements ArrayAccess
             $menuItemArray['route_sup'] ?? '',
             $menuItemArray['sub_menu'] ?? [],
             $menuItemArray['count'] ?? '',
+            $menuItemArray['link_count'] ?? '',
         );
     }
 

@@ -52,10 +52,17 @@
                                 @endif
 
 
-                                @if($menu['count'] != '')
+                                @if(($menu['count'] ?? false))
+                                    @if($menu['link_count'] ?? false)
+                                        <a href="{{$menu['link_count']}}"
+                                           class="px-2.5 py-0.5 cursor-pointer rounded-full text-xs font-medium bg-green-100 text-green-800 mr-2">
+                                            {{$menu['count']}}
+                                        </a>
+                                    @else
                                     <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 mr-2">
-                                       {{$menu['count']}}
+                                        {{$menu['count']}}
                                     </span>
+                                    @endif
                                 @endif
 
                             </span>
