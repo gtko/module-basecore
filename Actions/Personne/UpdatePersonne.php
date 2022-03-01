@@ -4,6 +4,7 @@
 namespace Modules\BaseCore\Actions\Personne;
 
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Modules\BaseCore\Actions\Dates\DateStringToCarbon;
 use Modules\BaseCore\Contracts\Personnes\UpdatePersonneContract;
@@ -19,7 +20,7 @@ use Modules\CrmAutoCar\Http\Requests\fournisseurUpdateRequest;
 class UpdatePersonne implements UpdatePersonneContract
 {
 
-    public function update(fournisseurUpdateRequest|PersonneUpdateRequest $request, Personne $personne): Personne
+    public function update(Request|fournisseurUpdateRequest|PersonneUpdateRequest $request, Personne $personne): Personne
     {
         DB::beginTransaction();
 
