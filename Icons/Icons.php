@@ -75,6 +75,7 @@ use Illuminate\Support\Str;
  * @method static infinity(int $size, string $class = '')
  * @method static badgeCheck(int $size, string $class = '')
  * @method static duplicate(int $size, string $class = '')
+ * @method static refund(int $size, string $class = '')
  * @package App\Icons
  */
 class Icons
@@ -148,7 +149,8 @@ class Icons
         'flag' => '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" /></svg>',
         'infinity' => '<svg fill="none" stroke="currentColor" viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M488.88 96C406.31 96 346.21 178.45 320 222.45 293.79 178.45 233.69 96 151.12 96 67.78 96 0 167.78 0 256s67.78 160 151.12 160c82.56 0 142.67-82.45 168.88-126.46C346.21 333.55 406.31 416 488.88 416 572.22 416 640 344.22 640 256S572.22 96 488.88 96zM151.12 384C85.44 384 32 326.58 32 256s53.44-128 119.12-128c78.03 0 136.47 100.61 150.94 128-14.47 27.39-72.9 128-150.94 128zm337.76 0c-78.03 0-136.47-100.61-150.94-128 14.47-27.39 72.91-128 150.94-128C554.56 128 608 185.42 608 256s-53.44 128-119.12 128z" class=""></path></svg>',
         'badgeCheck' => '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>',
-        'duplicate' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 5H7V3H21V17H19V5Z" fill="currentColor" /><path d="M9 13V11H11V13H13V15H11V17H9V15H7V13H9Z" fill="currentColor" /><path fill-rule="evenodd" clip-rule="evenodd" d="M3 7H17V21H3V7ZM5 9H15V19H5V9Z" fill="currentColor"/></svg>'
+        'duplicate' => '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 5H7V3H21V17H19V5Z" fill="currentColor" /><path d="M9 13V11H11V13H13V15H11V17H9V15H7V13H9Z" fill="currentColor" /><path fill-rule="evenodd" clip-rule="evenodd" d="M3 7H17V21H3V7ZM5 9H15V19H5V9Z" fill="currentColor"/></svg>',
+        'refund' => '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 15v-1a4 4 0 00-4-4H8m0 0l3 3m-3-3l3-3m9 14V5a2 2 0 00-2-2H6a2 2 0 00-2 2v16l4-2 4 2 4-2 4 2z"></path></svg>'
     ];
 
     public function getAll(): array
