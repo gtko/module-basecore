@@ -5,8 +5,6 @@ namespace Modules\BaseCore\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Modules\BaseCore\Actions\Url\SigneRouteGenerateKey;
-use Modules\CoreCRM\Actions\Devis\GenerateKeyDevis;
-use Modules\CoreCRM\Contracts\Repositories\DevisRepositoryContract;
 
 class SigneRouteMiddleware
 {

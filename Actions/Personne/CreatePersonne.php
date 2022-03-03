@@ -11,12 +11,13 @@ use Modules\BaseCore\Contracts\Repositories\PersonneRepositoryContract;
 use Modules\BaseCore\Contracts\Repositories\PhoneRepositoryContract;
 use Modules\BaseCore\Http\Requests\PersonneStoreRequest;
 use Modules\BaseCore\Models\Personne;
+use Modules\CrmAutoCar\Http\Requests\fournisseurUpdateRequest;
 
 class CreatePersonne implements CreatePersonneContract
 {
 
 
-    public function create(PersonneStoreRequest $request): Personne
+    public function create(fournisseurUpdateRequest|PersonneStoreRequest|\Illuminate\Http\Request $request): Personne
     {
         (new CleanOrphelinMailAndPhone())->clean();
 

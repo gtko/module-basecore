@@ -34,6 +34,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->app['router']->aliasMiddleware('secure.signate' , SigneRouteMiddleware::class);
 
+
         if(in_array('register', config('basecore.features'))) {
             $kernel->appendMiddlewareToGroup('web', CheckFeaturesMiddleware::class);
             $kernel->appendMiddlewareToGroup('web', CheckInfoAuthMiddleware::class);
