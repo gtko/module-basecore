@@ -44,12 +44,14 @@
                                         @endif
                                     </div>
                                 </a>
+
                                 @if(isset($menu['icon_sup']))
                                     <a class="pr-4 zoom-in"
                                        href="@if(isset($menu['route_sup'])) {{route($menu['route_sup'])}} @endif">
-                                    @icon($menu['icon_sup'])
-                                </a>
+                                        @icon($menu['icon_sup'])
+                                    </a>
                                 @endif
+
                                 @if(($menu['count'] ?? false))
                                     @if($menu['link_count'] ?? false)
                                         <a href="{{$menu['link_count']}}"
@@ -60,6 +62,7 @@
                                     <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 mr-2">
                                         {{$menu['count']}}
                                     </span>
+                                    @endif
                                 @endif
 
                             </span>
@@ -104,7 +107,6 @@
                             @endif
                         </li>
                     @endif
-                   @endif
                 @endforeach
                 <x-basecore::resolve-type-view
                     :contrat-view-class="Modules\BaseCore\Contracts\Views\AfterInMenuContract::class"
@@ -126,8 +128,5 @@
                 {{$slot}}
             </div>
         </div>
-
-        {{--        <livewire:time-tracker-commercial />--}}
-
     </div>
 @endsection
