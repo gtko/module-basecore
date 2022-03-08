@@ -50,8 +50,6 @@
                                     @icon($menu['icon_sup'])
                                 </a>
                                 @endif
-
-
                                 @if(($menu['count'] ?? false))
                                     @if($menu['link_count'] ?? false)
                                         <a href="{{$menu['link_count']}}"
@@ -108,6 +106,7 @@
                             @endif
                         </li>
                     @endif
+                   @endif
                 @endforeach
                 <x-basecore::resolve-type-view
                     :contrat-view-class="Modules\BaseCore\Contracts\Views\AfterInMenuContract::class"
