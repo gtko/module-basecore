@@ -11,9 +11,12 @@ class TypeView
     const TYPE_HTML = 'html';
 
 
+
+
     public function __construct(
         protected string $typeView = self::TYPE_BLADE_VIEW,
-        protected string $content = ''
+        protected string $content = '',
+        protected array $arguments = []
     ){}
 
     public function setBladeView(string $path): void
@@ -69,6 +72,22 @@ class TypeView
     public function isEmpty():bool
     {
         return empty($this->content);
+    }
+
+    /**
+     * @return array
+     */
+    public function getArguments(): array
+    {
+        return $this->arguments;
+    }
+
+    /**
+     * @param array $arguments
+     */
+    public function setArguments(array $arguments): void
+    {
+        $this->arguments = $arguments;
     }
 
 }
