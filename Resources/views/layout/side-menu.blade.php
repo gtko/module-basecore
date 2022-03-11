@@ -107,15 +107,12 @@
                                     @endforeach
                                 </ul>
                             @endif
-                            @endif
                         </li>
-                    @endif
-                    @endif
-                @endforeach
-                <x-basecore::resolve-type-view
-                    :contrat-view-class="Modules\BaseCore\Contracts\Views\AfterInMenuContract::class"
-                    :arguments="[]"
-                />
+                        @endforeach
+                        <x-basecore::resolve-type-view
+                            :contrat-view-class="Modules\BaseCore\Contracts\Views\AfterInMenuContract::class"
+                            :arguments="[]"
+                        />
             </ul>
 
             <x-basecore::resolve-type-view
