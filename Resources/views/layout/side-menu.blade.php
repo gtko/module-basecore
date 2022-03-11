@@ -44,12 +44,14 @@
                                         @endif
                                     </div>
                                 </a>
+
                                 @if(isset($menu['icon_sup']))
                                     <a class="pr-4 zoom-in"
                                        href="@if(isset($menu['route_sup'])) {{route($menu['route_sup'])}} @endif">
-                                    @icon($menu['icon_sup'])
-                                </a>
+                                        @icon($menu['icon_sup'])
+                                    </a>
                                 @endif
+
                                 @if(($menu['count'] ?? false))
                                     @if($menu['link_count'] ?? false)
                                         <a href="{{$menu['link_count']}}"
@@ -62,6 +64,8 @@
                                         {{$menu['count']}}
                                     </span>
                                     @endif
+                                @endif
+                                @endif
 
                             </span>
                             @if (isset($menu['sub_menu']))
@@ -106,7 +110,7 @@
                             @endif
                         </li>
                     @endif
-                   @endif
+                    @endif
                 @endforeach
                 <x-basecore::resolve-type-view
                     :contrat-view-class="Modules\BaseCore\Contracts\Views\AfterInMenuContract::class"

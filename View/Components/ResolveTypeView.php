@@ -26,7 +26,7 @@ class ResolveTypeView extends Component
             $this->typeViews = collect([]);
         }
 
-        $this->arguments = $arguments;
+        $this->arguments = ($arguments);
     }
 
     /**
