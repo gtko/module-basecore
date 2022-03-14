@@ -24,13 +24,23 @@
 @if($livewire)
 
 
+    <script>
+        if(window.jsonData) {
+            window.jsonData['{{ $name }}'] = {!! json_encode($jsonData) !!};
+        }else{
+            window.jsonData = {
+                '{{ $name }}' : {!! json_encode($jsonData) !!}
+            };
+        }
+        console.log('ICI window jsonData');
+    </script>
 
     <div
         x-data="{'content' : $wire.entangle('{{ $name }}').defer}"
         x-init="() => {
             console.log('CONTENT', content);
 
-           const PLACEHOLDERS = <?php echo json_encode($jsonData);?>;
+           const PLACEHOLDERS = window.jsonData['{{ $name }}'];
             CKEDITOR.addCss('span > .cke_placeholder { background-color: #ffeec2; }');
 
             const editor = CKEDITOR.replace('{{ $name }}', {
