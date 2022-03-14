@@ -59,10 +59,12 @@
                                             {{$menu['count']}}
                                         </a>
                                     @else
-                                    <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 mr-2">
+                                        <span
+                                            class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 mr-2">
                                         {{$menu['count']}}
                                     </span>
                                     @endif
+                                @endif
                                 @endif
 
                             </span>
@@ -106,12 +108,11 @@
                                 </ul>
                             @endif
                         </li>
-                    @endif
-                @endforeach
-                <x-basecore::resolve-type-view
-                    :contrat-view-class="Modules\BaseCore\Contracts\Views\AfterInMenuContract::class"
-                    :arguments="[]"
-                />
+                        @endforeach
+                        <x-basecore::resolve-type-view
+                            :contrat-view-class="Modules\BaseCore\Contracts\Views\AfterInMenuContract::class"
+                            :arguments="[]"
+                        />
             </ul>
 
             <x-basecore::resolve-type-view
@@ -128,5 +129,8 @@
                 {{$slot}}
             </div>
         </div>
+
+        {{--        <livewire:time-tracker-commercial />--}}
+
     </div>
 @endsection
