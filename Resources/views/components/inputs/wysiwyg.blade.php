@@ -32,14 +32,11 @@
                 '{{ $name }}' : {!! json_encode($jsonData) !!}
             };
         }
-        console.log('ICI window jsonData');
     </script>
 
     <div
         x-data="{'content' : $wire.entangle('{{ $name }}').defer}"
         x-init="() => {
-            console.log('CONTENT', content);
-
            const PLACEHOLDERS = window.jsonData['{{ $name }}'];
             CKEDITOR.addCss('span > .cke_placeholder { background-color: #ffeec2; }');
 
