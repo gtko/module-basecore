@@ -52,6 +52,7 @@ class UserController extends Controller
         $user = $repUser->create($personne, $request->roles,$request->password, [
             'company' => $request->company ?? '',
             'siret' => $request->siret ?? '',
+            'enabled' => $request->enabled === '1',
         ]);
 
         return redirect()
@@ -97,10 +98,13 @@ class UserController extends Controller
         $this->authorize('update', $user);
 
         $updatePersonne->update($request, $user->personne);
+
         $user = $repUser->update($user, $request->roles, $request->password,[
             'company' => $request->company ?? '',
             'siret' => $request->siret ?? '',
+            'enabled' => $request->enabled === '1',
         ]);
+
 
         return redirect()
             ->route('users.edit', $user)

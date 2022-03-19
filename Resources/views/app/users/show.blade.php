@@ -20,13 +20,6 @@
                 {{$stats ?? ''}}
             </x-slot>
             @endif
-
-            Ma nav
-
         </x-basecore::personne.header>
-
-
-        test content
-
     </x-basecore::layout.panel-full>
 </x-basecore::app-layout>

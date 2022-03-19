@@ -39,7 +39,7 @@ class User extends UserEntity
 
 //    protected $cacheFor = 3600;
 
-    protected $fillable = ['password', 'personne_id', 'email', 'data'];
+    protected $fillable = ['password', 'personne_id', 'email', 'data', 'enabled'];
 
 
     protected $casts = ['data' => 'array'];

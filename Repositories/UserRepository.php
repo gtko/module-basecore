@@ -26,6 +26,8 @@ class UserRepository extends AbstractRepository implements UserRepositoryContrac
         $validated = ['data' => $data];
         $validated['password'] = Hash::make($password);
         $validated['personne_id'] = $personne->id;
+        $validated['enabled'] = $data['enabled'] ;
+
 
         $user = app(UserEntity::class)::create($validated);
 
@@ -40,6 +42,8 @@ class UserRepository extends AbstractRepository implements UserRepositoryContrac
         if ($password) {
             $validated['password'] = Hash::make($password);
         }
+
+        $validated['enabled'] = $data['enabled'] ?? false;
 
         $user->update($validated);
         $user->syncRoles($roles);
@@ -92,5 +96,13 @@ class UserRepository extends AbstractRepository implements UserRepositoryContrac
         return $this->newQuery()->whereHas('roles', function($query) use ($roles){
             $query->whereIn('name', $roles);
         })->get();
+    }
+
+    public function changeEnabled(UserEntity $user,bool $enabled): UserEntity
+    {
+        $user->enabled = $enabled;
+        $user->save();
+
+        return $user;
     }
 }

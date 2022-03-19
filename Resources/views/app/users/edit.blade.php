@@ -1,7 +1,7 @@
 <x-basecore::app-layout>
     <x-slot name="breadcrumb">
         <x-basecore::breadcrumb-item :href="route('users.index')">Utilisateurs</x-basecore::breadcrumb-item>
-        <x-basecore::breadcrumb-item :href="route('users.show', $user)">{{$user->format_name}}</x-basecore::breadcrumb-item>
+        <x-basecore::breadcrumb-item >{{$user->format_name}}</x-basecore::breadcrumb-item>
         <x-basecore::breadcrumb-item>Editer</x-basecore::breadcrumb-item>
     </x-slot>
     <x-slot name="header">

@@ -43,7 +43,16 @@ class UserDataList extends DataListType
                 'format' => function($item){
                     return $item->created_at->format('d/m/Y');
                 }
-            ]
+            ],
+            'enabled' => [
+                'label' => 'Actif',
+                'component' => [
+                    'name' => 'basecore::components.user-enabled',
+                    'attribute' => function($item){
+                        return ['user' => $item];
+                    }
+                ]
+            ],
         ];
     }
 

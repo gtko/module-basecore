@@ -1,9 +1,22 @@
 @php $editing = isset($user) @endphp
 
+
+<x-basecore::inputs.group class="w-full">
+    <x-basecore::inputs.checkbox
+        name="enabled"
+        label="Activé"
+        :checked="old('enabled', ($editing ? ($user->enabled ?? true) : true))"
+        maxlength="255"
+        :required="!$editing"
+    />
+</x-basecore::inputs.group>
 <x-basecore::personne.form :editing="$editing" :personne="$user ?? null"/>
+
+
 
 <div class="flex flex-wrap">
     <div class="grid grid-cols-2 w-full">
+
         <x-basecore::inputs.group class="w-full">
             <x-basecore::inputs.text
                 name="company"
@@ -21,6 +34,7 @@
             />
         </x-basecore::inputs.group>
     </div>
+
 
 
     <x-basecore::inputs.group class="w-full">
