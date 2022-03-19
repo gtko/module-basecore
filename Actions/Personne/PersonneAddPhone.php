@@ -22,7 +22,13 @@ class PersonneAddPhone
                 $idsPhone[] = $phone->id;
             }
         }
-        $personne->phones()->sync($idsPhone);
+
+        if(!empty($idsPhone)) {
+            $personne->phones()->sync($idsPhone);
+        }else{
+            $personne->phones()->sync([]);
+        }
+
     }
 
 }
