@@ -41,7 +41,9 @@ class FortifyServiceProvider extends ServiceProvider
             })->first();
 
             if ($user &&
-                Hash::check($request->password, $user->password)) {
+                Hash::check($request->password, $user->password)
+                && $user->enabled
+            ) {
                 return $user;
             }
         });
