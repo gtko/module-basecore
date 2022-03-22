@@ -22,6 +22,8 @@ class UpdatePersonne implements UpdatePersonneContract
 
     public function update(Request|fournisseurUpdateRequest|PersonneUpdateRequest $request, Personne $personne): Personne
     {
+
+
         DB::beginTransaction();
 
         $repPersonne = app(PersonneRepositoryContract::class);
