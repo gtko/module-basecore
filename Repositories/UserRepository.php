@@ -26,7 +26,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryContrac
         $validated = ['data' => $data];
         $validated['password'] = Hash::make($password);
         $validated['personne_id'] = $personne->id;
-        $validated['enabled'] = $data['enabled'] ;
+        $validated['enabled'] = $data['enabled'] ?? false;
 
 
         $user = app(UserEntity::class)::create($validated);

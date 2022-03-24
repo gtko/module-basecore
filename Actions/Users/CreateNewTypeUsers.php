@@ -11,10 +11,10 @@ use Modules\BaseCore\Models\User;
 class CreateNewTypeUsers
 {
 
-    public function createNewType(Personne $personne, string $role):User
+    public function createNewType(Personne $personne, string $role, array $data = []):User
     {
         $password = md5(Carbon::now());
-        $user = app(UserRepositoryContract::class)->create($personne, [$role] , $password);
+        $user = app(UserRepositoryContract::class)->create($personne, [$role] , $password,$data);
 
         return $user;
     }
