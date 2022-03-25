@@ -9,8 +9,8 @@ class UserEnabled extends Component
 {
     public $user;
 
-    public function mount(UserEntity $user) {
-        $this->user = $user;
+    public function mount($user) {
+        $this->user = $user; 
     }
 
     public function render()

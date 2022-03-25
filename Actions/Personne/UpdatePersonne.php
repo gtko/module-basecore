@@ -41,7 +41,7 @@ class UpdatePersonne implements UpdatePersonneContract
             $request->firstname,
             $request->lastname,
             $date_birth ?? null,
-            $request->gender
+            $request->gender ?? 'other'
         );
 
         if ($request->address ?? false) {
