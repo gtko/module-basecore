@@ -84,6 +84,16 @@ class UserDataList extends DataListType
 
     public function getRepository(array $parents = []): RepositoryFetchable
     {
-       return app(UserRepositoryContract::class);
+       $repository = app(UserRepositoryContract::class);
+
+//       if(count(config('basecore.datalist.roles_unvisible', [])) > 0){
+//           $query = $repository->newQuery();
+//
+//           $repository->setQuery($query->whereHas('roles', function($query) {
+//               $query->whereNotIn('id', config('basecore.datalist.roles_unvisible', []));
+//           }));
+//       }
+
+       return $repository;
     }
 }
