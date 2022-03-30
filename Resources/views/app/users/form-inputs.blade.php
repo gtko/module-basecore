@@ -10,7 +10,11 @@
         :required="!$editing"
     />
 </x-basecore::inputs.group>
-<x-basecore::personne.form :editing="$editing" :personne="$user ?? null"/>
+
+
+<x-basecore::personne.form :editing="$editing" :personne="$user ?? null"
+    :required-fields="['first_name','phone', 'email']"
+/>
 
 
 
