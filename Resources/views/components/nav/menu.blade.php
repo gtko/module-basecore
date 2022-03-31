@@ -1,3 +1,3 @@
-<div {{$attributes->merge(['class' => "nav nav-tabs flex-col sm:flex-row justify-center lg:justify-start"])}} role="tablist">
+<div {{$attributes->merge(['class' => "nav overflow-auto space-x-4 nav-tabs flex-row justify-start lg:justify-start -mt-4"])}} role="tablist">
     {{$slot ?? ''}}
 </div>

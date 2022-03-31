@@ -25,6 +25,7 @@ use Modules\BaseCore\Contracts\Repositories\UserRepositoryContract;
 use Modules\BaseCore\Contracts\Services\CompositeurThemeContract;
 use Modules\BaseCore\Contracts\Services\ThemeContract;
 use Modules\BaseCore\Contracts\Views\BeforeMenuContract;
+use Modules\BaseCore\Contracts\Views\BeforeMobileMenuContract;
 use Modules\BaseCore\Entities\Features;
 use Modules\BaseCore\Entities\TypeView;
 use Modules\BaseCore\Exceptions\Handler;
@@ -88,6 +89,10 @@ class BaseCoreServiceProvider extends ServiceProvider
 
         app(CompositeurThemeContract::class)->setViews(BeforeMenuContract::class, [
             'basecore::logo' => new TypeView(TypeView::TYPE_BLADE_COMPONENT, 'basecore::application-logo')
+        ]);
+
+        app(CompositeurThemeContract::class)->setViews(BeforeMobileMenuContract::class, [
+            'basecore::logo' => new TypeView(TypeView::TYPE_BLADE_COMPONENT, 'basecore::application-logo-mobile')
         ]);
 
 
