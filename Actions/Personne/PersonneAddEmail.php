@@ -23,7 +23,11 @@ class PersonneAddEmail
             }
         }
 
-        $personne->emails()->sync($idsEmail);
+        if(!empty($idsEmail)) {
+            $personne->emails()->sync($idsEmail);
+        }else{
+            $personne->emails()->sync([]);
+        }
     }
 
 }
