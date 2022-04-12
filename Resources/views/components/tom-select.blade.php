@@ -42,6 +42,9 @@
         <script>
             new TomSelect("#{{ $idUnique }}", {
                 maxItems: {{ $max_item }},
+                onItemAdd: function(value, text, selected) {
+                    this.control_input.value = '';
+                },
                 @if($create)
                 create: true,
                 @endif
