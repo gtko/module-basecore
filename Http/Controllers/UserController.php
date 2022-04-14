@@ -3,6 +3,8 @@
 namespace Modules\BaseCore\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Modules\BaseCore\Contracts\Entities\UserEntity;
 use Modules\BaseCore\Contracts\Personnes\CreatePersonneContract;
 use Modules\BaseCore\Contracts\Personnes\UpdatePersonneContract;
@@ -24,6 +26,30 @@ class UserController extends Controller
         $this->authorize('views-any', app(UserEntity::class)::class);
 
         return view('basecore::app.users.index');
+    }
+
+    public function impersonate(Request $request, User $user)
+    {
+        if(!Auth::user()->isSuperAdmin()) {
+            return redirect()->back()->with('error', 'Impossible de se connecter en tant que cet utilisateur');
+        }
+
+        Session::put('impersonate', Auth::user()->id);
+        Auth::login($user);
+
+        return redirect()->route('statistiques');
+    }
+
+    public function depersonate(Request $request)
+    {
+        if(!Session::has('impersonate')) {
+            return redirect()->back()->with('error', 'Impossible de se deconnecter en tant que cet utilisateur');
+        }
+
+        Auth::loginUsingId(Session::get('impersonate'));
+        Session::forget('impersonate');
+
+        return redirect()->route('users.index');
     }
 
     /**

@@ -53,12 +53,21 @@ class UserDataList extends DataListType
                     }
                 ]
             ],
+
         ];
     }
 
     public function getActions(): array
     {
        return [
+           'controle' => [
+               'label' => '',
+               'permission' => ['impersonate', app(UserEntity::class)::class],
+               'route' => function($params){
+                   return route('users.impersonate', $params);
+               },
+               'icon' => 'portalin'
+           ],
            'edit' => [
                'permission' => ['update', app(UserEntity::class)::class],
                'route' => function($params){

@@ -53,6 +53,13 @@
                     <span  class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-gray-200 dark:hover:bg-dark-3 rounded-md">
                         @icon('moon', 20, 'mr-2') @include('basecore::layout.components.dark-mode-switcher')
                     </span>
+
+                    @if (session()->has('impersonate'))
+                        <a  href='{{route('users.depersonate')}}' class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-gray-200 dark:hover:bg-dark-3 rounded-md">
+                            @icon('portalout', 20, 'mr-2') revenir à mon profil
+                        </a>
+                    @endif
+
                 </div>
 
                 <div class="p-2 border-t border-gray-200 cursor-pointer border-opacity-5 dark:border-dark-3">
