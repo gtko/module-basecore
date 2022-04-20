@@ -33,7 +33,11 @@ class PhoneRepository extends AbstractRepository implements PhoneRepositoryContr
     public function searchQuery(Builder $query, string $value, mixed $parent = null): Builder
     {
        $value = str_replace(' ', '',$value);
-       return $query->where('phone', 'LIKE', '%'.$value.'%');
+       $valueSansIndicatif = preg_replace( '@\+[0-9]{2,3}@', '0',$value);
+
+       return $query
+           ->where('phone', 'LIKE', '%'.$value.'%')
+           ->OrWhere('phone', 'LIKE', '%'.$valueSansIndicatif.'%');
     }
 
     public function getModel(): Model
