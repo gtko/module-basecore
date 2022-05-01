@@ -31,6 +31,7 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.js"></script>
 
     @livewireStyles
+    @bukScripts
     @stack('styles')
     @stack('script-head')
 
