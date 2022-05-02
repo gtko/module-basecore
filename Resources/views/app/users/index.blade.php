@@ -7,5 +7,8 @@
             @lang('crud.users.index_title')
         </h2>
     </x-slot>
-    <livewire:datalistcrm::data-list :title="'Users'" :type="Modules\BaseCore\DataLists\UserDataList::class"/>
+{{--    <livewire:datalistcrm::data-list :title="'Users'" :type="Modules\BaseCore\DataLists\UserDataList::class"/>--}}
+
+    <livewire:basecore::list-users />
+
 </x-basecore::app-layout>
