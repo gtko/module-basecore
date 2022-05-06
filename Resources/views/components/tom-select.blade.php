@@ -3,7 +3,7 @@
         'collection' => '',
         'label' => '',
         'id' => 'id',
-        'max_item' => 3,
+        'max_item' => 100,
         'placeholder' => '',
         'create' => false,
         'multiple' => true,
