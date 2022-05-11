@@ -54,7 +54,7 @@ class PersonneStoreRequest extends FormRequest
             'address' => [],
             'city' => [],
             'code_zip' => [],
-            'country_id' => ['exists:countries,id'],
+            'country_id' => ['required', 'exists:countries,id'],
             'phone' => [],
         ];
     }
