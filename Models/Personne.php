@@ -36,9 +36,14 @@ class Personne extends Model
 {
     use HasFactory;
 //    use QueryCacheable;
-//    use Cachable;
-
-//    protected $cacheFor = 3600;
+//
+//    /**
+//     * Invalidate the cache automatically
+//     * upon update in the database.
+//     *
+//     * @var bool
+//     */
+//    protected static $flushCacheOnUpdate = true;
 
     protected $fillable = [
         'address_id',
@@ -48,7 +53,6 @@ class Personne extends Model
         'gender',
     ];
 
-    protected array $searchableFields = ['*'];
 
     protected $casts = [
         'date_birth' => 'datetime',
