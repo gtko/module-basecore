@@ -38,7 +38,7 @@ class UserController extends Controller
 
         $roles = Role::get();
 
-        return view('basecore::app.users.create', compact('personnes', 'roles'));
+        return view('basecore::app.users.index');
     }
 
     /**
