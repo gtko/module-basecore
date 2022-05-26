@@ -8,6 +8,7 @@ namespace Modules\BaseCore\Http\Requests;
  * @property string $password;
  * @property string $password_smtp;
  * @property string $company;
+ * @property bool $enabled;
  * @property string $siret;
  * @package Modules\BaseCore\Http\Requests
  */
@@ -34,6 +35,7 @@ class UserUpdateRequest extends PersonneUpdateRequest
         $rules['password'] = [''];
         $rules['company'] = '';
         $rules['siret'] = '';
+        $rules['enabled'] = '';
         $rules['roles'] = 'required|array|min:1';
 
         return $rules;

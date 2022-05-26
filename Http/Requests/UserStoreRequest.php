@@ -34,6 +34,7 @@ class UserStoreRequest extends PersonneStoreRequest
         $rules['password'] = ['required'];
         $rules['company'] = '';
         $rules['siret'] = '';
+        $rules['enabled'] = '';
         $rules['roles'] = 'required|array|min:1';
 
         return $rules;

@@ -35,6 +35,8 @@ Route::middleware(['auth:web', 'verified'])
 
 Route::resource('roles', RoleController::class);
 Route::resource('permissions', PermissionController::class);
+Route::get('users/impersonate/{user}', [UserController::class, 'impersonate'])->name('users.impersonate');
+Route::get('users/depersonate', [UserController::class, 'depersonate'])->name('users.depersonate');
 Route::resource('users', UserController::class);
 
 

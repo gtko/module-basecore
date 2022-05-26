@@ -1,12 +1,12 @@
 <!-- BEGIN: Mobile Menu -->
-<div id='mobile-menu' x-data="{open:false}" class="mobile-menu @yield('mobile-menu-modifier') {{ $layout == 'top-menu' ? 'mobile-menu--light' : '' }} md:hidden">
+<div id='mobile-menu' x-data="{open:false}" class="relative mobile-menu @yield('mobile-menu-modifier') {{ $layout == 'top-menu' ? 'mobile-menu--light' : '' }} md:hidden">
     <div class="mobile-menu-bar">
-        <a href="" class="flex mr-auto">
-            <img alt="" class="w-6" src="{{ asset('dist/images/logo.svg') }}">
-            <span class="dark:text-white text-black text-lg ml-3">
-                CRM<span class="font-medium">BE</span>
-            </span>
-        </a>
+
+        <x-basecore::resolve-type-view
+            :contrat-view-class="Modules\BaseCore\Contracts\Views\BeforeMobileMenuContract::class"
+            :arguments="[]"
+        />
+
 
         <div class="flex justify-end items-center">
             <x-basecore::resolve-type-view
@@ -17,11 +17,8 @@
                 @icon('burger',24, "w-8 h-8 text-gray-600 dark:text-white")
             </a>
         </div>
-
-
-
     </div>
-    <ul class="-intro-y mobile-menu-box py-5 hidden" x-bind:class="{'hidden':!open}" x-cloak>
+    <ul class="mobile-menu-box py-5 hidden" x-bind:class="{'hidden':!open}" x-cloak>
 
         @foreach ($side_menu as $menuKey => $menu)
             @if ($menu == 'devider')

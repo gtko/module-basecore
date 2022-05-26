@@ -22,6 +22,8 @@ class UpdatePersonne implements UpdatePersonneContract
 
     public function update(Request|fournisseurUpdateRequest|PersonneUpdateRequest $request, Personne $personne): Personne
     {
+
+
         DB::beginTransaction();
 
         $repPersonne = app(PersonneRepositoryContract::class);
@@ -39,7 +41,7 @@ class UpdatePersonne implements UpdatePersonneContract
             $request->firstname,
             $request->lastname,
             $date_birth ?? null,
-            $request->gender
+            $request->gender ?? 'other'
         );
 
         if ($request->address ?? false) {

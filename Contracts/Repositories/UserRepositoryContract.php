@@ -18,4 +18,6 @@ interface UserRepositoryContract extends SearchableRepository, RepositoryFetchab
 
     public function getUserByRoleName(array $roles):Collection;
 
+    public function changeEnabled(UserEntity $user,bool $enabled):UserEntity;
+
 }

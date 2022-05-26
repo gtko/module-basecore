@@ -3,7 +3,7 @@
         'collection' => '',
         'label' => '',
         'id' => 'id',
-        'max_item' => 3,
+        'max_item' => 100,
         'placeholder' => '',
         'create' => false,
         'multiple' => true,
@@ -42,6 +42,9 @@
         <script>
             new TomSelect("#{{ $idUnique }}", {
                 maxItems: {{ $max_item }},
+                onItemAdd: function(value, text, selected) {
+                    this.control_input.value = '';
+                },
                 @if($create)
                 create: true,
                 @endif

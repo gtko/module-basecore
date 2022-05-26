@@ -43,13 +43,31 @@ class UserDataList extends DataListType
                 'format' => function($item){
                     return $item->created_at->format('d/m/Y');
                 }
-            ]
+            ],
+            'enabled' => [
+                'label' => 'Actif',
+                'component' => [
+                    'name' => 'basecore::components.user-enabled',
+                    'attribute' => function($item){
+                        return ['user' => $item];
+                    }
+                ]
+            ],
+
         ];
     }
 
     public function getActions(): array
     {
        return [
+           'controle' => [
+               'label' => '',
+               'permission' => ['impersonate', app(UserEntity::class)::class],
+               'route' => function($params){
+                   return route('users.impersonate', $params);
+               },
+               'icon' => 'portalin'
+           ],
            'edit' => [
                'permission' => ['update', app(UserEntity::class)::class],
                'route' => function($params){
@@ -75,6 +93,16 @@ class UserDataList extends DataListType
 
     public function getRepository(array $parents = []): RepositoryFetchable
     {
-       return app(UserRepositoryContract::class);
+       $repository = app(UserRepositoryContract::class);
+
+//       if(count(config('basecore.datalist.roles_unvisible', [])) > 0){
+//           $query = $repository->newQuery();
+//
+//           $repository->setQuery($query->whereHas('roles', function($query) {
+//               $query->whereNotIn('id', config('basecore.datalist.roles_unvisible', []));
+//           }));
+//       }
+
+       return $repository;
     }
 }

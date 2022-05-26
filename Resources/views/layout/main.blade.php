@@ -26,8 +26,15 @@
 
         @if (session()->has('success'))
             <script>
-                const notyf = new Notyf({dismissible: true})
+                const notyf = new Notyf({dismissible: true, duration : 3000})
                 notyf.success('{{ session('success') }}')
+            </script>
+        @endif
+
+        @if (session()->has('error'))
+            <script>
+                const notyf = new Notyf({dismissible: true, duration : 10000})
+                notyf.error('{{ session('error') }}')
             </script>
         @endif
 

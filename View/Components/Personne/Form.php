@@ -12,7 +12,8 @@ class Form extends Component
     public function __construct(
         public ?TypePersonne $personne = null,
         public bool $editing = false,
-        public array $disabledFields = []
+        public array $disabledFields = [],
+        public array $requiredFields = ['firstname', 'address', 'city', 'code_zip', 'country_id', 'phone', 'email'],
     ){}
 
     /**

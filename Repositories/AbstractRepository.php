@@ -13,11 +13,43 @@ use Modules\BaseCore\Contracts\Repositories\RelationsRepositoryContract;
 use Modules\BaseCore\Exceptions\BadRelationException;
 use Modules\BaseCore\Interfaces\RepositoryFetchable;
 use Modules\BaseCore\Interfaces\RepositoryQueryCustom;
+use Modules\CrmAutoCar\Services\FilterBureau;
 use Modules\SearchCRM\Interfaces\SearchableRepository;
 
 abstract class AbstractRepository implements SearchableRepository, RepositoryFetchable, RepositoryQueryCustom, RelationsRepositoryContract, CreateOrUpdateRepositoryContract
 {
+
+
+    public $allBureau = false;
+
+    public function allBureau(){
+        $this->allBureau = true;
+
+        return $this;
+    }
+
+    public function isAllBureau(){
+        return $this->allBureau || app(FilterBureau::class)->isActived();
+    }
+
     protected ?Builder $query = null;
+
+    public static $searchActivate = false;
+
+    public function searchStart()
+    {
+        self::$searchActivate = true;
+    }
+
+    public function searchStop()
+    {
+        self::$searchActivate = false;
+    }
+
+    public function isSearchActivate(): bool
+    {
+        return  self::$searchActivate;
+    }
 
     public function createOrUpdate($modelTested, ...$params){
         if($modelTested) {

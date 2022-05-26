@@ -44,7 +44,7 @@ class CreatePersonne implements CreatePersonneContract
         );
 
         if ($request->address ?? false) {
-            $address = $repAddress->create($request->address, $request->city, $request->code_zip, $request->country_id);
+            $address = $repAddress->create($request->address, $request->city ?? '', $request->code_zip ?? '', $request->country_id ?? '150');
             $repPersonne->makeRelation($personne->address(), $address);
         }
 

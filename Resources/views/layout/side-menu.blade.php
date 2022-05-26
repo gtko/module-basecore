@@ -26,10 +26,19 @@
                     @if ($menu == 'devider')
                         <li class="side-nav__devider my-6"></li>
                     @else
-                        <li class="@if(isset($menu['route_sup'])) flex items-center justify-between @endif">
+                        <li
+                            @if (isset($menu['sub_menu']))
+                                @if($first_level_active_index == $menuKey)
+                                    x-data="{ open:  true}"
+                                @else
+                                    x-data="{ open: false }"
+                                @endif
+                            @endif
+                            class="@if(isset($menu['route_sup'])) flex items-center justify-between @endif">
                             <span
                                 class="w-full flex items-center justify-between {{ $first_level_active_index == $menuKey ? 'side-menu side-menu--active' : 'side-menu' }}">
                                 <a href="{{ isset($menu['route_name']) ? route($menu['route_name'], $menu['params'] ?? []) : 'javascript:;' }}"
+                                   @if (isset($menu['sub_menu'])) @click="open = !open" @endif
                                    class="flex justify-start items-center w-full">
                                     <div class="side-menu__icon">
                                             @icon($menu['icon'])
@@ -38,7 +47,9 @@
                                         {{ $menu['title'] }}
                                         @if (isset($menu['sub_menu']))
                                             <div
-                                                class="side-menu__sub-icon">
+                                                class="side-menu__sub-icon transform"
+                                                x-bind:class="{ '-rotate-180': !open }"
+                                            >
                                                    @icon('chevron-down')
                                             </div>
                                         @endif
@@ -69,7 +80,9 @@
 
                             </span>
                             @if (isset($menu['sub_menu']))
-                                <ul class="{{ $first_level_active_index == $menuKey ? 'side-menu__sub-open' : '' }}">
+                                <ul
+                                    x-bind:class="{'side-menu__sub-open': open}"
+                                  >
                                     @foreach ($menu['sub_menu'] as $subMenuKey => $subMenu)
                                         <li>
                                             <a href="{{ isset($subMenu['route_name']) ? route($subMenu['route_name'], $subMenu['params'] ?? []) : 'javascript:;' }}"

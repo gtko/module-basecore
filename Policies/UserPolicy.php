@@ -21,6 +21,12 @@ class UserPolicy
         return $user->hasPermissionTo('list users');
     }
 
+    /** impersonate user */
+    public function impersonate(UserEntity $user)
+    {
+        return $user->isSuperAdmin();
+    }
+
     /**
      * Determine whether the user can views the model.
      *
