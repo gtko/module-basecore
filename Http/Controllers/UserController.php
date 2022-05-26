@@ -58,13 +58,14 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
+
         $this->authorize('create', app(UserEntity::class)::class);
 
         $personnes = Personne::pluck('firstname', 'id');
 
-        $roles = Role::get();
+        $roles = Role::get(); 
 
-        return view('basecore::app.users.index');
+        return view('basecore::app.users.create', compact('personnes', 'roles'));
     }
 
     /**
