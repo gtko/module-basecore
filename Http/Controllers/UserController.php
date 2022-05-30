@@ -63,7 +63,7 @@ class UserController extends Controller
 
         $personnes = Personne::pluck('firstname', 'id');
 
-        $roles = Role::get(); 
+        $roles = Role::get();
 
         return view('basecore::app.users.create', compact('personnes', 'roles'));
     }
@@ -146,6 +146,7 @@ class UserController extends Controller
     public function destroy(Request $request, UserEntity $user)
     {
         $this->authorize('delete', $user);
+
 
         $user->delete();
 
