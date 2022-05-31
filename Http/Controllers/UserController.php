@@ -4,6 +4,8 @@ namespace Modules\BaseCore\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Modules\BaseCore\Contracts\Entities\UserEntity;
 use Modules\BaseCore\Contracts\Personnes\CreatePersonneContract;

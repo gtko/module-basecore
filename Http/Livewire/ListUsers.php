@@ -103,11 +103,6 @@ class ListUsers extends Component implements HasTable
                 ->tooltip("Editer l'utilisateur")
                 ->url(fn(User $record): string => route('users.edit', [$record]))
                 ->icon('heroicon-o-pencil'),
-            IconButtonAction::make('delete')
-                ->label('Supprimer')
-                ->tooltip("Supprimer l'utilisateur")
-                ->url(fn(User $record): string => route('users.destroy', [$record]))
-                ->icon('heroicon-o-trash'),
         ];
     }
 
