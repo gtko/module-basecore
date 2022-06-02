@@ -47,6 +47,7 @@
             label="Password"
             maxlength="255"
             :required="!$editing"
+            value="{{ old('siret', ($editing ? ($user->password ?? '') : ''))}}"
         />
     </x-basecore::inputs.group>
 

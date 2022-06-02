@@ -4,6 +4,8 @@ namespace Modules\BaseCore\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Modules\BaseCore\Contracts\Entities\UserEntity;
 use Modules\BaseCore\Contracts\Personnes\CreatePersonneContract;
@@ -58,6 +60,7 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
+
         $this->authorize('create', app(UserEntity::class)::class);
 
         $personnes = Personne::pluck('firstname', 'id');
@@ -145,6 +148,7 @@ class UserController extends Controller
     public function destroy(Request $request, UserEntity $user)
     {
         $this->authorize('delete', $user);
+
 
         $user->delete();
 
