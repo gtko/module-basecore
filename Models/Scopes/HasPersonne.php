@@ -36,6 +36,7 @@ trait HasPersonne
 
     use HasAvatar;
 
+
     public function newQuery(): Builder
     {
         return parent::newQuery();//->with(['personne.address.country', 'personne.phones', 'personne.emails']);
