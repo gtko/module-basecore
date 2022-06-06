@@ -1,4 +1,3 @@
-
 @props([
         'message' => 'Êtes-vous sur de vouloir effectuer cette action ?',
         'valider' => 'Valider',
@@ -12,31 +11,47 @@
             {{$slot}}
             <div class="action_block"></div>
         </div>
-        <div class="popup__confirm @if($position === 'left') popup__confirm--left @else popup__confirm--right @endif" style="display:none">
+        <div class="popup__confirm @if($position === 'left') popup__confirm--left @else popup__confirm--right @endif"
+             style="display:none">
             <span class="btn__valider btn btn-danger">{{$valider}}</span>
             <span class="btn__annuler btn btn-primary">{{$annuler}}</span>
         </div>
     </div>
     <script type="application/javascript">
-        (function(){
+        (function () {
             let valider = null;
 
-            function actionValider(){
+            function actionValider() {
                 valider = true;
+
+                let forms = document.querySelectorAll("#{{$idunique}} .action-confirm form");
+                for (let form of forms) {
+                    form.submit();
+                }
+
                 let elements = document.querySelectorAll("#{{$idunique}} .action-confirm *");
-                for(let element of elements) {
+                for (let element of elements) {
                     element.click()
                 }
                 document.querySelector('#{{$idunique}} .popup__confirm').style.display = 'none';
             }
 
-            function actionAnnuler(){
+            function actionAnnuler() {
                 document.querySelector('#{{$idunique}} .popup__confirm').style.display = 'none';
                 valider = false;
             }
 
+            let forms = document.querySelectorAll("#{{$idunique}} .action-confirm form");
+            for (let form of forms) {
+                form.addEventListener('submit', function (e) {
+                    if (valider !== true) {
+                        e.preventDefault();
+                        return false
+                    }
+                });
+            }
             let elements = document.querySelectorAll("#{{$idunique}} .action-confirm *");
-            for(let element of elements) {
+            for (let element of elements) {
                 element.addEventListener('click', function (event) {
                     document.querySelector('#{{$idunique}} .btn__valider').removeEventListener('click', actionValider);
                     document.querySelector('#{{$idunique}} .btn__annuler').removeEventListener('click', actionAnnuler);
@@ -48,7 +63,6 @@
                         valider = false;
                     }
                     document.querySelector('#{{$idunique}} .popup__confirm').style.display = 'flex';
-
                     document.querySelector('#{{$idunique}} .btn__valider').addEventListener('click', actionValider);
                     document.querySelector('#{{$idunique}} .btn__annuler').addEventListener('click', actionAnnuler);
                 });
