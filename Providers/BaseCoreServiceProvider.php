@@ -110,7 +110,7 @@ class BaseCoreServiceProvider extends ServiceProvider
         $this->app->register(FortifyServiceProvider::class);
         $this->app->register(JetstreamServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
-        $this->app->singleton(ExceptionHandler::class, Handler::class);
+        $this->app->scoped(ExceptionHandler::class, Handler::class);
 
         $this->app->bind(UserEntity::class, User::class);
 
@@ -125,9 +125,9 @@ class BaseCoreServiceProvider extends ServiceProvider
         $this->app->bind(UpdatePersonneContract::class, UpdatePersonne::class);
         $this->app->bind(CompanyRepositoryContract::class, CompanyRepository::class);
 
-        $this->app->singleton(CompositeurThemeContract::class, CompositeurTheme::class);
-        $this->app->singleton(FeaturesContract::class, Features::class);
-        $this->app->singleton(DarkModeService::class, DarkModeService::class);
+        $this->app->scoped(CompositeurThemeContract::class, CompositeurTheme::class);
+        $this->app->scoped(FeaturesContract::class, Features::class);
+        $this->app->scoped(DarkModeService::class, DarkModeService::class);
 
 
 
