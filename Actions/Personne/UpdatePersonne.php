@@ -47,6 +47,8 @@ class UpdatePersonne implements UpdatePersonneContract
         if ($request->address ?? false) {
             $address = $repAddress->createOrUpdate($personne->address, $request->address, $request->city, $request->code_zip, $request->country_id);
             $repPersonne->makeRelation($personne->address(), $address);
+        }else{
+            $personne->address()->delete();
         }
 
         (new PersonneAddEmail())->add($request->email, $personne);
