@@ -111,7 +111,11 @@ trait HasPersonne
         $city = $this->personne->address->city ?? '';
         $country = $this->personne->address->country->name ?? '';
 
-        return  $address . ', ' . $code_zip . ' ' . $city . ', ' . $country;
+        if($address || $code_zip || $city || $country) {
+            return $address . ', ' . $code_zip . ' ' . $city . ', ' . $country;
+        }
+
+        return null;
     }
 
     public function getFullAddressFormattedWithBrAttribute()
