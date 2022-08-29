@@ -12,7 +12,7 @@ class PhoneRepository extends AbstractRepository implements PhoneRepositoryContr
     {
         $phone = new Phone();
 
-        $phone->phone = $number;
+        $phone->phone = (new FormatPhoneNumber())->format($number);
         $phone->save();
 
         return $phone;
@@ -20,7 +20,7 @@ class PhoneRepository extends AbstractRepository implements PhoneRepositoryContr
 
     public function update(Phone $phone, string $number):Phone
     {
-        $phone->phone = $number;
+        $phone->phone = (new FormatPhoneNumber())->format($number);
         $phone->save();
 
         return $phone;
