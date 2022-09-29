@@ -125,7 +125,7 @@ trait HasPersonne
         $city = $this->personne->address->city ?? '';
         $country = $this->personne->address->country->name ?? '';
 
-        return  $address . ',<br>' . $code_zip . ' ' . $city;
+        return  $address . ',<br>' . $code_zip . ' ' . $city . ',<br>' . $country;
     }
 
     public function getFirstNameAttribute()
